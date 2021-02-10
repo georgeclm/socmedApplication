@@ -55,12 +55,12 @@ class User extends Authenticatable
     {
         return $this->hasOne(Profile::class);
     }
-    // public function posts()
-    // {
-    //     // add order by inside the post to update the databse on this one sorted by the created time in descending order
-    //     // based on the timestamp
-    //     return $this->hasMany(Post::class)->orderBy('created_at', 'DESC');
-    // }
+    public function posts()
+    {
+        // add order by inside the post to update the databse on this one sorted by the created time in descending order
+        // based on the timestamp
+        return $this->hasMany(Post::class)->orderBy('created_at', 'DESC');
+    }
     // public function following()
     // {
     //     // to set the following for the user belong to many profile that has followed

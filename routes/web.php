@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfilesController;
+use App\Http\Controllers\PostsController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,5 +27,9 @@ Route::get('/profile/{user}', [ProfilesController::class, 'index']);
 Route::get('/profile/{user}/edit', [ProfilesController::class, 'edit']);
 
 Route::patch('/profile/{user}', [ProfilesController::class, 'update']);
+
+Route::get('/p/create', [PostsController::class, 'create']);
+// for the post data that is going inside the variable
+Route::post('/p', [PostsController::class, 'store']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

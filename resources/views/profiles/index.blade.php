@@ -16,10 +16,10 @@
         </div>
     @endif
 
-    <div class="container">
+    <div class="container" style="width: 65%">
         <div class="row">
             <div class="col-md-3 p-5">
-                <img src="{{ $user->profile->profileImage() }}" class="rounded-circle" width="160px" height="160px">
+                <img src="{{ $user->profile->profileImage() }}" class="rounded-circle" width="200px" height="200px">
             </div>
             <div class="col-md-9 pt-5">
                 <div class="d-flex justify-content-between align-items-baseline">
@@ -46,15 +46,24 @@
                 <div class="p-1"><a href="https://{{ $user->profile->url ?? '' }}" class="text-dark" target="_blank">
                         {{ $user->profile->url ?? '' }} </a></div>
                 <!-- use this can function to make sure auth function will pop or not mention it is the same as before -->
-                {{-- @foreach ($user->posts as $post)
-                    <div>
-                        <a href="/p/{{ $post->id }}">
-                            <img src="/storage/{{ $post->image }}">
-                        </a>
-                    </div>
-
-                @endforeach --}}
             </div>
+        </div>
+        <hr> <br>
+    </div>
+
+    <div class="container" style="width: 65%">
+        <div class="row">
+            @foreach ($user->posts as $post)
+                <div class="col-6 col-md-4 mb-3">
+                    <a href="/p/{{ $post->id }}">
+                        <div class="bg-image hover-overlay">
+
+                            <img src="/storage/uploads/{{ $post->image }}" height="300" width="300" class="image">
+                        </div>
+
+                    </a>
+                </div>
+            @endforeach
         </div>
     </div>
 @endsection

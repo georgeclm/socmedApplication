@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    <br>
     <div class="container custom-login">
         <div class="row justify-content-center">
             <div class="col-sm-4 col-sm-offset-4">

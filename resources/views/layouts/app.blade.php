@@ -68,8 +68,7 @@
                         <span class="dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="text-dark"> <img src="{{ $user->profile->profileImage() }}"
-                                        class="rounded-circle" width="25px" height="25px"></span>
+                                <span class="text-dark"> {{ Auth::user()->name ?? 'nouser' }}</span>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li> <a class="dropdown-item" href="{{ route('logout') }}"
@@ -87,7 +86,7 @@
                 </div>
             </div>
         </nav>
-        <main class="py-4">
+        <main class="py-0">
             @yield('content')
         </main>
         <br><br><br><br><br><br><br><br>
@@ -130,5 +129,11 @@
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
     </script>
 </body>
+<style>
+    .bg-image:hover .image {
+        filter: brightness(80%);
+    }
+
+</style>
 
 </html>
