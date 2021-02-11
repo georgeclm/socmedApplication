@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 class ProfilesController extends Controller
 {
@@ -13,8 +13,8 @@ class ProfilesController extends Controller
         // same as this below to simplfy the work
         // dd($user->profile);
         // $user = User::find($user);
-        //$follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
-        $follows = false;
+        $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
+        // dd(Auth::user()->following->count());
         return view('profiles.index', compact('user', 'follows'));
     }
     public function edit(User $user)

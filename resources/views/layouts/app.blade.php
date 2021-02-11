@@ -71,6 +71,14 @@
                                 <span class="text-dark"> {{ Auth::user()->name ?? 'nouser' }}</span>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li> <a class="dropdown-item" href="/profile/{{ Auth::user()->id ?? 'nouser' }}">
+                                        Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+
                                 <li> <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
@@ -132,6 +140,19 @@
 <style>
     .bg-image:hover .image {
         filter: brightness(80%);
+    }
+
+    .link-web a {
+        color: #000;
+        text-decoration: none;
+        transition: color 0.5s;
+    }
+
+    .link-web a:hover {
+        transition: 1s;
+        border-bottom: 0px;
+        color: #646786;
+
     }
 
 </style>

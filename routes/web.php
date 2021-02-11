@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FollowsController;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\PostsController;
 
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Auth::routes();
@@ -31,5 +32,9 @@ Route::patch('/profile/{user}', [ProfilesController::class, 'update']);
 Route::get('/p/create', [PostsController::class, 'create']);
 // for the post data that is going inside the variable
 Route::post('/p', [PostsController::class, 'store']);
+
+Route::get('/p/{post}', [PostsController::class, 'show']);
+
+Route::get('follow/{user}', [FollowsController::class, 'store']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

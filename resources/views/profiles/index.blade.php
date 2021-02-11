@@ -23,8 +23,22 @@
             </div>
             <div class="col-md-9 pt-5">
                 <div class="d-flex justify-content-between align-items-baseline">
-                    <div class="d-flex align-items-center pb-3">
-                        <div class="h4"> {{ $user->name }}</div>
+                    <div class="d-flex align-items-center">
+                        <div class="col-9 h4"> {{ $user->name }}</div>
+                        @if ($user->id == Auth::user()->id)
+                        @else
+                            @if (!$follows)
+                                {{-- @if ($user->profile->followers->count() == 0) --}}
+                                <div class="col-2">
+                                    <a href="/follow/{{ $user->id }}" class="btn btn-outline-primary"> Follow</a>
+                                </div>
+                                {{-- if($user->profile->followers[0]->id == $user->id) --}}
+                            @else
+                                <div class="col-2">
+                                    <a href="/follow/{{ $user->id }}" class="btn btn-outline-primary"> Unfollow</a>
+                                </div>
+                            @endif
+                        @endif
                     </div>
                     @can('update', $user->profile)
                         <a href="/p/create" class="btn btn-outline-secondary"> Add new post</a>
@@ -35,10 +49,10 @@
                     <a href="/profile/{{ $user->id }}/edit" class="btn btn-outline-success btn-sm">Edit Profile</a> <br>
                 @endcan
                 <div class="d-flex">
-                    <!--Take the number posts count based on the id created  $user->posts->count()  $user->profile->followers->count() $user->profile->following->count()-->
-                    <div class="p-3"><strong>0</strong> posts</div>
-                    <div class="p-3"><strong>0</strong> followers</div>
-                    <div class="p-3"><strong>0</strong> following</div>
+                    <!--Take the number posts count based on the id created   $user->profile->followers->count() $user->profile->following->count()-->
+                    <div class="p-3"><strong>{{ $user->posts->count() }}</strong> posts</div>
+                    <div class="p-3"><strong>{{ $user->profile->followers->count() }}</strong> followers</div>
+                    <div class="p-3"><strong>{{ $user->following->count() }}</strong> following</div>
 
                 </div>
                 <div class="p-1"><strong>{{ $user->profile->title ?? 'Coming soon' }} </strong></div>

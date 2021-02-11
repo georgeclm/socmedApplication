@@ -58,4 +58,8 @@ class PostsController extends Controller
         // composer require intervention/image
         return redirect('/profile/' . auth()->user()->id);
     }
+    public function show(Post $post)
+    {
+        return view('posts/detail', compact('post'));
+    }
 }

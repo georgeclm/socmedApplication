@@ -61,9 +61,9 @@ class User extends Authenticatable
         // based on the timestamp
         return $this->hasMany(Post::class)->orderBy('created_at', 'DESC');
     }
-    // public function following()
-    // {
-    //     // to set the following for the user belong to many profile that has followed
-    //     return $this->belongsToMany(Profile::class);
-    // }
+    public function following()
+    {
+        // to set the following for the user belong to many profile that has followed
+        return $this->belongsToMany(Profile::class);
+    }
 }
