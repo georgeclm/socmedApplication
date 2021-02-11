@@ -17,7 +17,21 @@
                             </a></div>
                     </div>
                     <div class="col-2">
-                        <a href="#" class="btn btn-outline-primary btn-sm">Follow</a>
+                        @if ($post->user->id == Auth::user()->id)
+                        @else
+                            @if (!$follows)
+                                {{-- @if ($user->profile->followers->count() == 0) --}}
+                                <div class="col-2">
+                                    <a href="/follow/{{ $post->user->id }}" class="btn btn-outline-primary"> Follow</a>
+                                </div>
+                                {{-- if($user->profile->followers[0]->id == $user->id) --}}
+                            @else
+                                <div class="col-2">
+                                    <a href="/follow/{{ $post->user->id }}" class="btn btn-outline-primary"> Unfollow</a>
+                                </div>
+                            @endif
+                        @endif
+
                     </div>
                 </div>
                 <hr>

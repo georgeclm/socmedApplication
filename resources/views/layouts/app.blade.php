@@ -1,3 +1,9 @@
+<?php
+use App\Http\Controllers\ProfilesController;
+if (Auth::user()) {
+$profileImage = ProfilesController::takeProfileImg();
+}
+?>
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -68,7 +74,10 @@
                         <span class="dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="text-dark"> {{ Auth::user()->name ?? 'nouser' }}</span>
+                                {{-- <span class="text-dark"> {{ Auth::user()->name ?? 'nouser' }}</span> --}}
+                                <span><img src="{{ $profileImage }}" width="25" height="25" class="rounded-circle">
+                                </span>
+
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li> <a class="dropdown-item" href="/profile/{{ Auth::user()->id ?? 'nouser' }}">
@@ -137,6 +146,12 @@
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
     </script>
 </body>
+<script>
+    function forceLower(strInput) {
+        strInput.value = strInput.value.toLowerCase();
+    }​
+
+</script>
 <style>
     .bg-image:hover .image {
         filter: brightness(80%);

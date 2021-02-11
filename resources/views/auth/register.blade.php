@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
+@section('content') <br><br>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-4">
@@ -16,7 +16,7 @@
                                 <div class="col">
                                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
                                         name="name" value="{{ old('name') }}" required autocomplete="name" autofocus
-                                        placeholder="Username">
+                                        placeholder="Username" onkeyup="return forceLower(this);">
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">

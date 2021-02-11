@@ -9,23 +9,23 @@
                     @csrf
                     @method("PATCH")
                     <div class="mb-3">
-                        <label for="title" class="form-label">Title</label>
+                        <label for="title" class="form-label">Name</label>
                         <input type="text" name="title" class="form-control" id="title"
                             value="{{ old('title') ?? $user->profile->title }}" required autofocus autocomplete="title">
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="form-label">Update Description</label>
+                        <label for="description" class="form-label">Bio</label>
                         <input type="text" name="description" class="form-control" id="description"
                             value="{{ old('description') ?? $user->profile->description }}" autofocus
                             autocomplete="description">
                     </div>
                     <div class="mb-3">
-                        <label for="url" class="form-label">Update URL</label>
+                        <label for="url" class="form-label">Website</label>
                         <input type="text" name="url" class="form-control" id="url"
                             value="{{ old('url') ?? $user->profile->url }}" autofocus autocomplete="url">
                     </div>
                     <div class="mb-3">
-                        <label for="image" class="form-label">Update Profile Picture</label>
+                        <label for="image" class="form-label">Profile Picture</label>
                         <input type="file" class="form-control" id="image" name="image" value="{{ old('image') }}"
                             aria-describedby="emailHelp">
                     </div>

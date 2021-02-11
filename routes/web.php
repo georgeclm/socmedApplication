@@ -17,11 +17,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth/login');
-});
 
 Auth::routes();
+
+Route::get('/', [PostsController::class, 'index']);
 
 Route::get('/profile/{user}', [ProfilesController::class, 'index']);
 
@@ -36,5 +35,3 @@ Route::post('/p', [PostsController::class, 'store']);
 Route::get('/p/{post}', [PostsController::class, 'show']);
 
 Route::get('follow/{user}', [FollowsController::class, 'store']);
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

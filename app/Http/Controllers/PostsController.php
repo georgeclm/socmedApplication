@@ -5,12 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class PostsController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
+    }
+    public function index()
+    {
+        // this index pluck to take the relationship inside following from auth user and take the user id
+        $users = auth()->user()->following()->pluck('profiles.user_id');
+        $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(5);
+        return view('posts/index', compact('posts'));
     }
     public function create()
     {
@@ -60,6 +68,7 @@ class PostsController extends Controller
     }
     public function show(Post $post)
     {
-        return view('posts/detail', compact('post'));
+        $follows = (auth()->user()) ? auth()->user()->following->contains($post->user->id) : false;
+        return view('posts/detail', compact('post', 'follows'));
     }
 }

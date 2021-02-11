@@ -61,4 +61,9 @@ class ProfilesController extends Controller
         // php artisan make:policy ProfilePolicy -m Profile
         // then inside app there will be policy and profile policy
     }
+    static function takeProfileImg()
+    {
+        $profileImg = Auth::user()->profile->profileImage();
+        return $profileImg;
+    }
 }

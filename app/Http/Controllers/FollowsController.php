@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class FollowsController extends Controller
 {
@@ -16,8 +17,8 @@ class FollowsController extends Controller
     {
         // this use the profile user pivot table to connect between the follower and following
         //dd($user->profile->followers[0]->id);
-
         auth()->user()->following()->toggle($user->profile);
-        return redirect('profile/' . $user->id);
+        // to refresh the page
+        return Redirect::back();
     }
 }
