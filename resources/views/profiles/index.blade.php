@@ -1,21 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                <h6>{{ $errors->first() }}</h6>
-            </ul>
-        </div>
-    @endif
-
-    @if (\Session::has('success'))
-        <div class="alert alert-success">
-            <ul>
-                <h6>{!! \Session::get('success') !!}</h6>
-            </ul>
-        </div>
-    @endif
-
     <div class="container" style="width: 65%">
         <div class="row">
             <div class="col-md-3 p-5">

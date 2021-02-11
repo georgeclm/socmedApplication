@@ -28,12 +28,11 @@ class ProfilesController extends Controller
     {
         // to authorize the edit  the update
         $this->authorize('update', $user->profile);
-
         $data = request()->validate([
             'title' => '',
             'description' => '',
             'url' => '',
-            'image' => 'mimes:jpeg,bmp,png',
+            'image' => 'image',
 
         ]);
         // for image

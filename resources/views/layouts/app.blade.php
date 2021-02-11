@@ -103,6 +103,23 @@ $profileImage = ProfilesController::takeProfileImg();
                 </div>
             </div>
         </nav>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    <h6>{{ $errors->first() }}</h6>
+                </ul>
+            </div>
+        @endif
+
+        @if (\Session::has('success'))
+            <div class="alert alert-success">
+                <ul>
+                    <h6>{!! \Session::get('success') !!}</h6>
+                </ul>
+            </div>
+        @endif
+
+
         <main class="py-0">
             @yield('content')
         </main>
