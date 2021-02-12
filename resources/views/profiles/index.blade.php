@@ -2,14 +2,20 @@
 @section('content')
     <div class="container" style="width: 65%">
         <div class="row">
-            <div class="col-md-3 p-5">
+            <div class="col-md-4 p-5">
                 <img src="{{ $user->profile->profileImage() }}" class="rounded-circle" width="200px" height="200px">
             </div>
-            <div class="col-md-9 pt-5">
+            <div class="col-md-8 pt-5">
                 <div class="d-flex justify-content-between align-items-baseline">
                     <div class="d-flex align-items-center">
                         <div class="col-9 h4"> {{ $user->name }}</div>
                         @if ($user->id == Auth::user()->id)
+                            @can('update', $user->profile)
+                                <div class="col-8">
+                                    <a href="/profile/{{ $user->id }}/edit" class="btn btn-outline-success btn-sm">Edit
+                                        Profile</a>
+                                </div>
+                            @endcan
                         @else
                             @if (!$follows)
                                 {{-- @if ($user->profile->followers->count() == 0) --}}
@@ -24,14 +30,12 @@
                             @endif
                         @endif
                     </div>
+
                     @can('update', $user->profile)
                         <a href="/p/create" class="btn btn-outline-secondary"> Add new post</a>
                     @endcan
 
                 </div>
-                @can('update', $user->profile)
-                    <a href="/profile/{{ $user->id }}/edit" class="btn btn-outline-success btn-sm">Edit Profile</a> <br>
-                @endcan
                 <div class="d-flex">
                     <!--Take the number posts count based on the id created   $user->profile->followers->count() $user->profile->following->count()-->
                     <div class="p-3"><strong>{{ $user->posts->count() }}</strong> posts</div>

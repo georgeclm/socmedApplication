@@ -35,3 +35,5 @@ Route::post('/p', [PostsController::class, 'store']);
 Route::get('/p/{post}', [PostsController::class, 'show']);
 
 Route::get('follow/{user}', [FollowsController::class, 'store']);
+
+Route::get('p/{post}/like', [PostsController::class, 'likePost']);

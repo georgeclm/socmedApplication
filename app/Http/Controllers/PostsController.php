@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
@@ -69,6 +70,12 @@ class PostsController extends Controller
     public function show(Post $post)
     {
         $follows = (auth()->user()) ? auth()->user()->following->contains($post->user->id) : false;
-        return view('posts/detail', compact('post', 'follows'));
+        $liked = (auth()->user()) ? auth()->user()->like->contains($post->id) : false;
+        return view('posts/detail', compact('post', 'follows', 'liked'));
+    }
+    public function likePost(Post $post)
+    {
+        auth()->user()->like()->toggle($post);
+        return Redirect::back();
     }
 }

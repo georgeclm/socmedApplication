@@ -66,4 +66,9 @@ class User extends Authenticatable
         // to set the following for the user belong to many profile that has followed
         return $this->belongsToMany(Profile::class);
     }
+    public function like()
+    {
+        // to set the following for the user belong to many profile that has followed
+        return $this->belongsToMany(Post::class);
+    }
 }
