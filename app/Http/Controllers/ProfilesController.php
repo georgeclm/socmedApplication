@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -64,5 +65,20 @@ class ProfilesController extends Controller
     {
         $profileImg = Auth::user()->profile->profileImage();
         return $profileImg;
+    }
+    public function search(Request $request)
+    {
+        $name = [];
+        if ($request->has('q')) {
+            $search = $request->q;
+            $name = User::select("id", "name")
+                ->where('name', 'LIKE', "%$search%")
+                ->get();
+        }
+        return response()->json($name);
+    }
+    public function gotoprofile(Request $request)
+    {
+        return redirect("/profile/{$request->livesearch}");
     }
 }

@@ -6,7 +6,7 @@ $profileImage = ProfilesController::takeProfileImg();
 ?>
 
 <div>
-    <nav class="navbar navbar-expand navbar-light bg-light sticky-top">
+    <nav class="navbar navbar-expand navbar-light bg-muted sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">
                 <img src="{{ asset('img/logoicon.ico') }}" alt="" width="33" height="33"
@@ -33,6 +33,21 @@ $profileImage = ProfilesController::takeProfileImg();
                             </li> --}}
                     @endguest
                 </ul>
+                @guest
+                @else
+                    <form action="/gotoprofile" method="POST" class='form-control' style="border: none !important">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-7">
+                                <select class="livesearch form-control" name="livesearch" required></select>
+                            </div>
+                            <div class="col-md-1">
+                                <button class="btn btn-outline-success" type="submit">Visit</button>
+                            </div>
+                        </div>
+                    </form>
+                @endguest
+
                 @guest
                     <div class="mr-3 p-2">
                         <a class="btn btn-outline-success btn-sm" href="/login">Login</a>

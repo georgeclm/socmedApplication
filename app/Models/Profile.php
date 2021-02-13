@@ -15,6 +15,8 @@ class Profile extends Model
         return '/storage/profile/' . $imagePath;
     }
     protected $guarded = [];
+
+
     public function user()
     {
         return $this->belongsTo(User::class);
