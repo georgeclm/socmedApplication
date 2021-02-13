@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
@@ -19,6 +20,14 @@ class PostsController extends Controller
         // this index pluck to take the relationship inside following from auth user and take the user id
         $users = auth()->user()->following()->pluck('profiles.user_id');
         $posts = Post::whereIn('user_id', $users)->with('user')->latest()->get();
+        foreach ($posts as $post) {
+            $comments = $post->comments;
+            // dd(count($comments));
+            foreach ($comments as $comment) {
+                // dd($comment->user->name);
+            }
+        }
+
         return view('posts/index', compact('posts'));
     }
     public function create()

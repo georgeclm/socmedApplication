@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\FollowsController;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\PostsController;
@@ -37,3 +38,5 @@ Route::get('/p/{post}', [PostsController::class, 'show']);
 Route::get('follow/{user}', [FollowsController::class, 'store']);
 
 Route::get('p/{post}/like', [PostsController::class, 'likePost']);
+
+Route::post('p/{post}/comment', [CommentsController::class, 'create']);

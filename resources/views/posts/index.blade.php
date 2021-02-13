@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\ProfilesController;
+$limit = 1;
 if (Auth::user()) {
 $profileImage = ProfilesController::takeProfileImg();
 }
@@ -26,26 +27,56 @@ $profileImage = ProfilesController::takeProfileImg();
                         <div class="d-flex">
                             @if (!$liked)
                                 {{-- @if ($user->profile->followers->count() == 0) --}}
-                                <div class="px-2 col-1 mt-2">
+                                <div class="px-2">
                                     <a href="/p/{{ $post->id }}/like" class=""> <img src="{{ asset('img/like.jpg') }}"
-                                            height="21" width="21"></a>
+                                            height="25" width="25"></a>
                                 </div>
                                 {{-- if($user->profile->followers[0]->id == $user->id) --}}
                             @else
-                                <div class="px-2 col-1 mt-2">
-                                    <a href="/p/{{ $post->id }}/like" class=""><img
-                                            src="{{ asset('img/unlike.png') }}" height="21" width="21"> </a>
+                                <div class="px-2">
+                                    <a href="/p/{{ $post->id }}/like" class=""> <img
+                                            src="{{ asset('img/unlike.png') }}" height="25" width="25"></a>
                                 </div>
                             @endif
-                            <div class="p-2"><strong>{{ $post->likes->count() }}</strong> likes</div>
-
+                            <div class="px-2">
+                                <a href="/p/{{ $post->id }}" class=""> <img src="{{ asset('img/commenticon.png') }}"
+                                        height="25" width="25"></a>
+                            </div>
                         </div>
-
-
-                        <div class="link-web p-2"><a href="/profile/{{ $post->user->id }}">{{ $post->user->name }}</a>
+                        <div class="pt-2 px-2"><strong>{{ $post->likes->count() }}</strong> likes</div>
+                        <div class="link-web px-2"><a href="/profile/{{ $post->user->id }}">
+                                <strong>{{ $post->user->name }}</strong>
+                            </a>
                             {{ $post->caption }}
                         </div>
-
+                        <input type="hidden" value="{{ $comments = $post->comments }}">
+                        @if (count($comments) > 2)
+                            <div class=" px-2"><a href="/p/{{ $post->id }}" class="text-muted"
+                                    style="text-decoration: none">View all
+                                    {{ count($comments) }} comments</a></div>
+                        @endif
+                        @foreach ($comments as $comment)
+                            <div class="link-web px-2"><a
+                                    href="/profile/{{ $comment->user->id }}"><strong>{{ $comment->user->name }}</strong></a>
+                                {{ $comment->comment }}
+                            </div>
+                            @if ($limit++ == 2)
+                                @break
+                            @endif
+                        @endforeach
+                        <hr>
+                        <form method="POST" action="p/{{ $post->id }}/comment">
+                            @csrf
+                            <div class="d-flex pb-3">
+                                <div class="col-10 px-3">
+                                    <input type="text" name="comment" class="form-control" id="comment"
+                                        placeholder="Add a comment..." required autofocus autocomplete="comment">
+                                </div>
+                                <div class="col-1">
+                                    <button type="submit" class="btn btn-outline-primary btn-sm">Post</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 @endforeach
             </div>
