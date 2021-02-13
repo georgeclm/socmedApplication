@@ -51,7 +51,7 @@ $profileImage = ProfilesController::takeProfileImg();
                         </div>
                         <input type="hidden" value="{{ $comments = $post->comments }}">
                         @if (count($comments) > 2)
-                            <div class=" px-2"><a href="/p/{{ $post->id }}" class="text-muted"
+                            <div class="px-2"><a href="/p/{{ $post->id }}" class="text-muted"
                                     style="text-decoration: none">View all
                                     {{ count($comments) }} comments</a></div>
                         @endif
