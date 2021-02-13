@@ -4,16 +4,28 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class FollowButton extends Component
+class followButton extends Component
 {
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public $userId = "";
+    public $follows = "";
+    public $button = "";
+    public $color = "";
+    public function __construct($userId, $follows)
     {
-        //
+        $this->userId = $userId;
+        $this->follows = $follows;
+        if (!$follows) {
+            $this->button = "Follow";
+            $this->color = "primary";
+        } else {
+            $this->button = "Following";
+            $this->color = "dark";
+        }
     }
 
     /**
@@ -23,6 +35,7 @@ class FollowButton extends Component
      */
     public function render()
     {
+
         return view('components.follow-button');
     }
 }

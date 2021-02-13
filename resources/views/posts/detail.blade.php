@@ -19,17 +19,7 @@
                     <div class="col-2">
                         @if ($post->user->id == Auth::user()->id)
                         @else
-                            @if (!$follows)
-                                {{-- @if ($user->profile->followers->count() == 0) --}}
-                                <div class="col-2">
-                                    <a href="/follow/{{ $post->user->id }}" class="btn btn-outline-primary"> Follow</a>
-                                </div>
-                                {{-- if($user->profile->followers[0]->id == $user->id) --}}
-                            @else
-                                <div class="col-2">
-                                    <a href="/follow/{{ $post->user->id }}" class="btn btn-outline-dark"> Following</a>
-                                </div>
-                            @endif
+                            <x-follow-button user-id="{{ $post->user->id }}" follows="{{ $follows }}" />
                         @endif
 
                     </div>
@@ -49,25 +39,8 @@
                     </div>
                 @endforeach
                 <hr>
-                <div class="d-flex">
-                    @if (!$liked)
-                        {{-- @if ($user->profile->followers->count() == 0) --}}
-                        <div class="px-1">
-                            <a href="/p/{{ $post->id }}/like" class=""> <img src="{{ asset('img/like.jpg') }}"
-                                    height="25" width="25"></a>
-                        </div>
-                        {{-- if($user->profile->followers[0]->id == $user->id) --}}
-                    @else
-                        <div class="px-1">
-                            <a href="/p/{{ $post->id }}/like" class=""> <img src="{{ asset('img/unlike.png') }}"
-                                    height="25" width="25"></a>
-                        </div>
-                    @endif
-                    <div class="px-1">
-                        <a href="/p/{{ $post->id }}" class=""> <img src="{{ asset('img/commenticon.png') }}"
-                                height="25" width="25"></a>
-                    </div>
-                </div>
+                <x-like-button post-id="{{ $post->id }}" thepage="detail" />
+
                 <div class="pt-2 px-1"><strong>{{ $post->likes->count() }}</strong> likes</div>
 
 

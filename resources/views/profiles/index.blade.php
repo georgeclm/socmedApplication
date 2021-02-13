@@ -17,17 +17,7 @@
                                 </div>
                             @endcan
                         @else
-                            @if (!$follows)
-                                {{-- @if ($user->profile->followers->count() == 0) --}}
-                                <div class="col-2">
-                                    <a href="/follow/{{ $user->id }}" class="btn btn-outline-primary"> Follow</a>
-                                </div>
-                                {{-- if($user->profile->followers[0]->id == $user->id) --}}
-                            @else
-                                <div class="col-2">
-                                    <a href="/follow/{{ $user->id }}" class="btn btn-outline-dark"> Following</a>
-                                </div>
-                            @endif
+                            <x-follow-button user-id="{{ $user->id }}" follows="{{ $follows }}" />
                         @endif
                     </div>
 

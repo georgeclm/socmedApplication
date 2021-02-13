@@ -20,13 +20,13 @@ class PostsController extends Controller
         // this index pluck to take the relationship inside following from auth user and take the user id
         $users = auth()->user()->following()->pluck('profiles.user_id');
         $posts = Post::whereIn('user_id', $users)->with('user')->latest()->get();
-        foreach ($posts as $post) {
-            $comments = $post->comments;
-            // dd(count($comments));
-            foreach ($comments as $comment) {
-                // dd($comment->user->name);
-            }
-        }
+        // foreach ($posts as $post) {
+        //     $comments = $post->comments;
+        //     // dd(count($comments));
+        //     foreach ($comments as $comment) {
+        //         // dd($comment->user->name);
+        //     }
+        // }
 
         return view('posts/index', compact('posts'));
     }

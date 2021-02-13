@@ -20,29 +20,7 @@ $profileImage = ProfilesController::takeProfileImg();
                             </a>
                         </span>
                         <img src="/storage/uploads/{{ $post->image }}" height="400" width="400">
-                        <input type="hidden"
-                            value="{{ $liked = auth()->user()
-    ? auth()->user()->like->contains($post->id)
-    : false }}">
-                        <div class="d-flex">
-                            @if (!$liked)
-                                {{-- @if ($user->profile->followers->count() == 0) --}}
-                                <div class="px-2">
-                                    <a href="/p/{{ $post->id }}/like" class=""> <img src="{{ asset('img/like.jpg') }}"
-                                            height="25" width="25"></a>
-                                </div>
-                                {{-- if($user->profile->followers[0]->id == $user->id) --}}
-                            @else
-                                <div class="px-2">
-                                    <a href="/p/{{ $post->id }}/like" class=""> <img
-                                            src="{{ asset('img/unlike.png') }}" height="25" width="25"></a>
-                                </div>
-                            @endif
-                            <div class="px-2">
-                                <a href="/p/{{ $post->id }}" class=""> <img src="{{ asset('img/commenticon.png') }}"
-                                        height="25" width="25"></a>
-                            </div>
-                        </div>
+                        <x-like-button post-id="{{ $post->id }}" thepage="index" />
                         <div class="pt-2 px-2"><strong>{{ $post->likes->count() }}</strong> likes</div>
                         <div class="link-web px-2"><a href="/profile/{{ $post->user->id }}">
                                 <strong>{{ $post->user->name }}</strong>
