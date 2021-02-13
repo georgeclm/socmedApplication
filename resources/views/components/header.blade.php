@@ -39,10 +39,8 @@ $profileImage = ProfilesController::takeProfileImg();
                         @csrf
                         <div class="row">
                             <div class="col-md-7">
-                                <select class="livesearch form-control" name="livesearch" required></select>
-                            </div>
-                            <div class="col-md-1">
-                                <button class="btn btn-outline-success" type="submit">Visit</button>
+                                <select class="livesearch form-control" name="livesearch" required
+                                    onchange="this.form.submit()"></select>
                             </div>
                         </div>
                     </form>
