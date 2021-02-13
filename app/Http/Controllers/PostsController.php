@@ -18,7 +18,7 @@ class PostsController extends Controller
     {
         // this index pluck to take the relationship inside following from auth user and take the user id
         $users = auth()->user()->following()->pluck('profiles.user_id');
-        $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(5);
+        $posts = Post::whereIn('user_id', $users)->with('user')->latest()->get();
         return view('posts/index', compact('posts'));
     }
     public function create()
