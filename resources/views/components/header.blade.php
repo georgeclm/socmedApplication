@@ -47,13 +47,12 @@ $profileImage = ProfilesController::takeProfileImg();
                 @endguest
 
                 @guest
-                    <div class="mr-3 p-2">
-                        <a class="btn btn-outline-success btn-sm" href="/login">Login</a>
+                    <div class="link-web mr-3 p-2">
+                        <a class="" href="/login">Login</a>
                     </div>
                     @if (Route::has('register'))
-                        <div class="ml-3">
-                            <a class="btn btn-outline-success btn-sm"
-                                href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <div class="link-web ml-3">
+                            <a class="" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </div>
                     @endif
 

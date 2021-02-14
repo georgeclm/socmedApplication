@@ -6,6 +6,7 @@ use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProfilesController extends Controller
 {
@@ -71,8 +72,11 @@ class ProfilesController extends Controller
         $name = [];
         if ($request->has('q')) {
             $search = $request->q;
-            $name = User::select("id", "name")
+            $name = DB::table('users')
+                ->join('profiles', 'users.id', '=', 'profiles.user_id')
                 ->where('name', 'LIKE', "%$search%")
+                ->orWhere('title', 'LIKE', "%$search%")
+                ->select('users.id', 'users.name')
                 ->get();
         }
         return response()->json($name);
