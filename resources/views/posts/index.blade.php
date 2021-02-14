@@ -64,7 +64,7 @@ $profileImage = ProfilesController::takeProfileImg();
                     <div class="col-4">
                         <img src="{{ $profileImage }}" width="80" height="80" class="rounded-circle">
                     </div>
-                    <div class="col-1 mt-3">
+                    <div class="col-6 mt-3">
                         <div class="link-web">
                             <a href="/profile/{{ auth()->user()->id }}">
                                 <strong>{{ auth()->user()->name }}</strong></a>
