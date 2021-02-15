@@ -4,8 +4,7 @@ use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\FollowsController;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\PostsController;
-use App\Http\Controllers\AutocompleteSearchController;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,9 +35,9 @@ Route::post('/p', [PostsController::class, 'store']);
 
 Route::get('/p/{post}', [PostsController::class, 'show']);
 
-Route::get('follow/{user}', [FollowsController::class, 'store']);
+Route::post('follow/{user}', [FollowsController::class, 'store']);
 
-Route::get('p/{post}/like', [PostsController::class, 'likePost']);
+Route::post('p/{post}/like', [PostsController::class, 'likePost']);
 
 Route::post('p/{post}/comment', [CommentsController::class, 'create']);
 

@@ -17,7 +17,8 @@
                                 </div>
                             @endcan
                         @else
-                            <x-follow-button user-id="{{ $user->id }}" follows="{{ $follows }}" />
+                            {{-- <x-follow-button user-id="{{ $user->id }}" follows="{{ $follows }}" /> --}}
+                            <follow-button user-id="{{ $user->id }}" follows="{{ $follows }}"></follow-button>
                         @endif
                     </div>
 

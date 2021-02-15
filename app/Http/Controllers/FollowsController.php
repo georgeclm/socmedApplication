@@ -17,8 +17,8 @@ class FollowsController extends Controller
     {
         // this use the profile user pivot table to connect between the follower and following
         //dd($user->profile->followers[0]->id);
-        auth()->user()->following()->toggle($user->profile);
+        // Redirect::back();
         // to refresh the page
-        return Redirect::back();
+        return auth()->user()->following()->toggle($user->profile);
     }
 }

@@ -21,7 +21,12 @@ $profileImage = ProfilesController::takeProfileImg();
                             </a>
                         </span>
                         <img src="/storage/uploads/{{ $post->image }}" height="400" width="400">
-                        <x-like-button post-id="{{ $post->id }}" thepage="index" />
+                        <input type="hidden"
+                            value="{{ $liked = auth()->user()
+    ? auth()->user()->like->contains($post->id)
+    : false }}">
+                        <like-button post-id="{{ $post->id }}" liked="{{ $liked }}"></like-button>
+                        {{-- <x-like-button post-id="{{ $post->id }}" thepage="index" /> --}}
                         <div class="pt-2 px-2"><strong>{{ $post->likes->count() }}</strong> likes</div>
                         <div class="link-web px-2"><a href="/profile/{{ $post->user->id }}">
                                 <strong>{{ $post->user->name }}</strong>
@@ -47,11 +52,11 @@ $profileImage = ProfilesController::takeProfileImg();
                         <form method="POST" action="p/{{ $post->id }}/comment">
                             @csrf
                             <div class="d-flex pb-3">
-                                <div class="col-10 px-3">
+                                <div class="col-10 pl-2">
                                     <input type="text" name="comment" class="form-control" id="comment"
                                         placeholder="Add a comment..." required autofocus autocomplete="comment">
                                 </div>
-                                <div class="col-1">
+                                <div class="col-2">
                                     <button type="submit" class="btn btn-outline-primary btn-sm">Post</button>
                                 </div>
                             </div>
