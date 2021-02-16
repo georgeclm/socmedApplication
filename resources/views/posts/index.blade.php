@@ -6,7 +6,9 @@ $profileImage = ProfilesController::takeProfileImg();
 }
 ?>
 @extends('layouts.app')
-@section('content') <br><br>
+@section('title', 'SocMedApp')
+
+@section('content')
 
     <div class="container-fluid" style="width: 65%">
         <div class="row">

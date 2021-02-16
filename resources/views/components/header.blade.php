@@ -52,7 +52,7 @@ $profileImage = ProfilesController::takeProfileImg();
                     </div>
                     @if (Route::has('register'))
                         <div class="link-web ml-3">
-                            <a class="" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="" href="{{ route('register') }}">Sign Up</a>
                         </div>
                     @endif
 

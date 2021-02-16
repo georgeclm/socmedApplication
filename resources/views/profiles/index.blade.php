@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', "{$user->profile->title} ({$user->name}) - SocMed")
 @section('content')
     <div class="container" style="width: 65%">
         <div class="row">
@@ -30,8 +31,12 @@
                 <div class="d-flex">
                     <!--Take the number posts count based on the id created   $user->profile->followers->count() $user->profile->following->count()-->
                     <div class="p-3"><strong>{{ $user->posts->count() }}</strong> posts</div>
-                    <div class="p-3"><strong>{{ $user->profile->followers->count() }}</strong> followers</div>
-                    <div class="p-3"><strong>{{ $user->following->count() }}</strong> following</div>
+                    <div class="link-web p-3"><strong><a
+                                href="/profile/{{ $user->id }}/followers">{{ $user->profile->followers->count() }}</strong>
+                        followers</a></div>
+                    <div class="link-web p-3"><a
+                            href="/profile/{{ $user->id }}/following"><strong>{{ $user->following->count() }}</strong>
+                            following</a></div>
 
                 </div>
                 <div class="p-1"><strong>{{ $user->profile->title ?? 'Coming soon' }} </strong></div>

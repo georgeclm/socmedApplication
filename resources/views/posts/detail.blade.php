@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section('title', "{$post->user->profile->title} on SocMed: {$post->caption}")
+
 @section('content') <br><br>
     <div class="container border" style="width: 65%">
         <div class="row">

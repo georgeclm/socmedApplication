@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section('title', 'Edit Profile - SocMed')
+
 @section('content')
     <br>
     <div class="container custom-login">

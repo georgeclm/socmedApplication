@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Add New Post - SocMed')
 @section('content')
     <br><br>
     <div class="container custom-login">
