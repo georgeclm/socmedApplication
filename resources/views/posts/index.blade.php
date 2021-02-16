@@ -28,10 +28,10 @@ $profileImage = ProfilesController::takeProfileImg();
     : false }}">
 
                         {{-- <img src="/storage/uploads/{{ $post->image }}" height="400" width="400"> --}}
-                        <like-button post-id="{{ $post->id }}" liked="{{ $liked }}" image="{{ $post->image }}">
+                        <like-button post-id="{{ $post->id }}" liked="{{ $liked }}" image="{{ $post->image }}"
+                            count="{{ $post->likes->count() }}">
                         </like-button>
-                        {{-- <x-like-button post-id="{{ $post->id }}" thepage="index" /> --}}
-                        <div class="pt-2 px-2"><strong>{{ $post->likes->count() }}</strong> likes</div>
+                        {{-- <div class="pt-2 px-2"><strong>{{ $post->likes->count() }}</strong> likes</div> --}}
                         <div class="link-web px-2"><a href="/profile/{{ $post->user->id }}">
                                 <strong>{{ $post->user->name }}</strong>
                             </a>
@@ -43,6 +43,7 @@ $profileImage = ProfilesController::takeProfileImg();
                                     style="text-decoration: none">View all
                                     {{ count($comments) }} comments</a></div>
                         @endif
+                        <input type="hidden" value="{{ $limit = 1 }}">
                         @foreach ($comments as $comment)
                             <div class="link-web px-2"><a
                                     href="/profile/{{ $comment->user->id }}"><strong>{{ $comment->user->name }}</strong></a>

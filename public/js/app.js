@@ -1918,18 +1918,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["userId", "follows"],
   data: function data() {
     return {
-      status: this.follows
+      status: this.follows,
+      className: ""
     };
   },
   methods: {
@@ -1948,6 +1942,17 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     buttonText: function buttonText() {
       return this.status ? "Following" : "Follow";
+    },
+    classText: function classText() {
+      if (this.status) {
+        this.className = "btn btn-outline-secondary";
+        var classdata = this.className;
+        return classdata;
+      } else {
+        this.className = "btn btn-outline-primary";
+        var classdata = this.className;
+        return classdata;
+      }
     }
   }
 });
@@ -1989,20 +1994,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["postId", "liked", "image"],
+  props: ["postId", "liked", "image", "count"],
   data: function data() {
     return {
       status: this.liked,
-      detail: "/p/" + this.postId
+      detail: "/p/" + this.postId,
+      link: ""
     };
   },
   methods: {
@@ -2011,6 +2009,12 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.post("/p/" + this.postId + "/like").then(function (response) {
         _this.status = !_this.status;
+
+        if (_this.status) {
+          _this.count++;
+        } else {
+          _this.count--;
+        }
       })["catch"](function (errors) {
         if (errors.response.status == 401) {
           window.location = "/login";
@@ -2024,7 +2028,15 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     buttonText: function buttonText() {
-      return this.status ? "Like" : "Unlike";
+      if (this.status) {
+        this.link = "/img/unlike.png";
+        var link = this.link;
+        return link;
+      } else {
+        this.link = "/img/like.jpg";
+        var link = this.link;
+        return link;
+      }
     }
   }
 });
@@ -2064,20 +2076,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["postId", "liked"],
+  props: ["postId", "liked", "count"],
   data: function data() {
     return {
       status: this.liked,
-      detail: "/p/" + this.postId
+      detail: "/p/" + this.postId,
+      link: ""
     };
   },
   methods: {
@@ -2086,6 +2091,12 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.post("/p/" + this.postId + "/like").then(function (response) {
         _this.status = !_this.status;
+
+        if (_this.status) {
+          _this.count++;
+        } else {
+          _this.count--;
+        }
       })["catch"](function (errors) {
         if (errors.response.status == 401) {
           window.location = "/login";
@@ -2099,7 +2110,15 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     buttonText: function buttonText() {
-      return this.status ? "Like" : "Unlike";
+      if (this.status) {
+        this.link = "/img/unlike.png";
+        var link = this.link;
+        return link;
+      } else {
+        this.link = "/img/like.jpg";
+        var link = this.link;
+        return link;
+      }
     }
   }
 });
@@ -19898,17 +19917,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "col-2" }, [
-      _vm.buttonText == "Follow"
-        ? _c("button", {
-            staticClass: "btn btn-outline-primary",
-            domProps: { textContent: _vm._s(_vm.buttonText) },
-            on: { click: _vm.followUser }
-          })
-        : _c("button", {
-            staticClass: "btn btn-outline-secondary",
-            domProps: { textContent: _vm._s(_vm.buttonText) },
-            on: { click: _vm.followUser }
-          })
+      _c("button", {
+        class: _vm.classText,
+        domProps: { textContent: _vm._s(_vm.buttonText) },
+        on: { click: _vm.followUser }
+      })
     ])
   ])
 }
@@ -19943,17 +19956,11 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "d-flex mt-2" }, [
       _c("div", { staticClass: "px-2" }, [
-        _vm.buttonText == "Unlike"
-          ? _c("img", {
-              staticStyle: { cursor: "pointer" },
-              attrs: { src: "/img/like.jpg", height: "25", width: "25" },
-              on: { click: _vm.likePost }
-            })
-          : _c("img", {
-              staticStyle: { cursor: "pointer" },
-              attrs: { src: "/img/unlike.png", height: "25", width: "25" },
-              on: { click: _vm.likePost }
-            })
+        _c("img", {
+          staticStyle: { cursor: "pointer" },
+          attrs: { src: _vm.buttonText, height: "25", width: "25" },
+          on: { click: _vm.likePost }
+        })
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "px-2" }, [
@@ -19963,6 +19970,11 @@ var render = function() {
           })
         ])
       ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "pt-2 px-2" }, [
+      _c("strong", { domProps: { textContent: _vm._s(this.count) } }),
+      _vm._v(" likes")
     ])
   ])
 }
@@ -19992,17 +20004,11 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "d-flex mt-2" }, [
       _c("div", { staticClass: "px-2" }, [
-        _vm.buttonText == "Unlike"
-          ? _c("img", {
-              staticStyle: { cursor: "pointer" },
-              attrs: { src: "/img/like.jpg", height: "25", width: "25" },
-              on: { click: _vm.likePost }
-            })
-          : _c("img", {
-              staticStyle: { cursor: "pointer" },
-              attrs: { src: "/img/unlike.png", height: "25", width: "25" },
-              on: { click: _vm.likePost }
-            })
+        _c("img", {
+          staticStyle: { cursor: "pointer" },
+          attrs: { src: _vm.buttonText, height: "25", width: "25" },
+          on: { click: _vm.likePost }
+        })
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "px-2" }, [
@@ -20012,6 +20018,11 @@ var render = function() {
           })
         ])
       ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "pt-2 px-2" }, [
+      _c("strong", { domProps: { textContent: _vm._s(this.count) } }),
+      _vm._v(" likes")
     ])
   ])
 }

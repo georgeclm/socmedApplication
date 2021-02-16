@@ -2,16 +2,9 @@
   <div>
     <div class="col-2">
       <button
-        class="btn btn-outline-primary"
+        :class="classText"
         @click="followUser"
         v-text="buttonText"
-        v-if="buttonText == 'Follow'"
-      ></button>
-      <button
-        class="btn btn-outline-secondary"
-        @click="followUser"
-        v-text="buttonText"
-        v-else
       ></button>
     </div>
   </div>
@@ -24,6 +17,7 @@ export default {
   data: function () {
     return {
       status: this.follows,
+      className: "",
     };
   },
 
@@ -45,6 +39,17 @@ export default {
   computed: {
     buttonText() {
       return this.status ? "Following" : "Follow";
+    },
+    classText() {
+      if (this.status) {
+        this.className = "btn btn-outline-secondary";
+        var classdata = this.className;
+        return classdata;
+      } else {
+        this.className = "btn btn-outline-primary";
+        var classdata = this.className;
+        return classdata;
+      }
     },
   },
 };

@@ -5,19 +5,10 @@
     <div class="d-flex mt-2">
       <div class="px-2">
         <img
-          src="/img/like.jpg"
+          :src="buttonText"
           height="25"
           width="25"
           style="cursor: pointer"
-          v-if="buttonText == 'Unlike'"
-          @click="likePost"
-        />
-        <img
-          src="/img/unlike.png"
-          height="25"
-          width="25"
-          style="cursor: pointer"
-          v-else
           @click="likePost"
         />
       </div>
@@ -27,26 +18,32 @@
         </a>
       </div>
     </div>
+    <div class="pt-2 px-2"><strong v-text="this.count"></strong> likes</div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["postId", "liked", "image"],
+  props: ["postId", "liked", "image", "count"],
 
   data: function () {
     return {
       status: this.liked,
       detail: "/p/" + this.postId,
+      link: "",
     };
   },
-
   methods: {
     likePost() {
       axios
         .post("/p/" + this.postId + "/like")
         .then((response) => {
           this.status = !this.status;
+          if (this.status) {
+            this.count++;
+          } else {
+            this.count--;
+          }
         })
         .catch((errors) => {
           if (errors.response.status == 401) {
@@ -62,7 +59,15 @@ export default {
 
   computed: {
     buttonText() {
-      return this.status ? "Like" : "Unlike";
+      if (this.status) {
+        this.link = "/img/unlike.png";
+        var link = this.link;
+        return link;
+      } else {
+        this.link = "/img/like.jpg";
+        var link = this.link;
+        return link;
+      }
     },
   },
 };
