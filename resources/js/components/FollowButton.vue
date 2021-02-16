@@ -44,7 +44,7 @@ export default {
 
   computed: {
     buttonText() {
-      return this.status ? "Unfollow" : "Follow";
+      return this.status ? "Following" : "Follow";
     },
   },
 };

@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('content') <br><br>
-    <div class="container" style="width: 65%">
+    <div class="container border" style="width: 65%">
         <div class="row">
-            <div class="col-sm-8">
-                <img src="/storage/uploads/{{ $post->image }}" height="300" width="300">
+            <div class="col-8 m-auto text-center">
+                <img src="/storage/uploads/{{ $post->image }}" height="550" width="550">
             </div>
-            <div class="col-4">
+            <div class="col-4 p-3">
                 <div class="d-flex align-items-center">
                     <div class="col-2">
                         <img src="{{ $post->user->profile->profileImage() }}" class=" rounded-circle" width="35"
@@ -29,17 +29,19 @@
                 <hr>
                 {{-- <p><span class="font-weight-bold"><a href="/profile/{{ $post->user->id }}"><span
                                 class="text-dark">{{ $post->user->username }}</span></a></span> {{ $post->caption }}</p> --}}
-                <div class="link-web pb-2"><a
-                        href="/profile/{{ $post->user->id }}"><strong>{{ $post->user->name }}</strong></a>
-                    {{ $post->caption }}
-                </div>
-                <input type="hidden" value="{{ $comments = $post->comments }}">
-                @foreach ($comments as $comment)
-                    <div class="link-web pb-1"><a
-                            href="/profile/{{ $comment->user->id }}"><strong>{{ $comment->user->name }}</strong></a>
-                        {{ $comment->comment }}
+                <div class="scrollable">
+                    <div class="link-web pb-2"><a
+                            href="/profile/{{ $post->user->id }}"><strong>{{ $post->user->name }}</strong></a>
+                        {{ $post->caption }}
                     </div>
-                @endforeach
+                    <input type="hidden" value="{{ $comments = $post->comments }}">
+                    @foreach ($comments as $comment)
+                        <div class="link-web pb-1"><a
+                                href="/profile/{{ $comment->user->id }}"><strong>{{ $comment->user->name }}</strong></a>
+                            {{ $comment->comment }}
+                        </div>
+                    @endforeach
+                </div>
                 <hr>
                 <input type="hidden"
                     value="{{ $liked = auth()->user()

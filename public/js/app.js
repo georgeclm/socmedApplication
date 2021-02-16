@@ -1947,7 +1947,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     buttonText: function buttonText() {
-      return this.status ? "Unfollow" : "Follow";
+      return this.status ? "Following" : "Follow";
     }
   }
 });

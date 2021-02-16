@@ -49,7 +49,7 @@
                 </ul>
             </div>
         @endif
-        <main class="py-4">
+        <main class="py-3">
             @yield('content')
         </main>
         <br><br><br><br><br><br><br><br>
@@ -64,9 +64,16 @@
     function forceLower(strInput) {
         strInput.value = strInput.value.toLowerCase();
     }
+    var scrollSpy = new bootstrap.ScrollSpy(document.body, {
+        target: '#navbar-example'
+    })
 
 </script>
 <style>
+    body {
+        position: relative;
+    }
+
     .bg-image:hover .image {
         filter: brightness(80%);
     }
@@ -81,6 +88,12 @@
         transition: 1s;
         border-bottom: 0px;
         color: #646786;
+    }
+
+    .scrollable {
+        height: 300px;
+        /* or any value */
+        overflow-y: auto;
     }
 
 </style>
