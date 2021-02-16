@@ -26,7 +26,8 @@ class CommentsController extends Controller
             'post_id' => $post->id,
             'user_id' => $userId
         ]);
-        $comment->save();
-        return Redirect::back();
+        //Redirect::back();
+
+        return $comment->save();
     }
 }

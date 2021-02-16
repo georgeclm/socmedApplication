@@ -36,14 +36,13 @@ $('.livesearch').select2({
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
-
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-import Vue from 'vue'
 // new with laravel 8 to add component inside the blade
+
+import Vue from 'vue'
 import FollowButton from  './components/FollowButton.vue';
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 import LikeButton from './components/LikeButton.vue';
+import CommentButton from './components/CommentButton.vue';
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -52,6 +51,6 @@ import LikeButton from './components/LikeButton.vue';
 
 const app = new Vue({
     el: '#app',
-    components: { FollowButton,LikeButton }
+    components: { FollowButton,LikeButton,CommentButton }
 
 });

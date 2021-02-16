@@ -49,18 +49,7 @@ $profileImage = ProfilesController::takeProfileImg();
                             @endif
                         @endforeach
                         <hr>
-                        <form method="POST" action="p/{{ $post->id }}/comment">
-                            @csrf
-                            <div class="d-flex pb-3">
-                                <div class="col-10 pl-2">
-                                    <input type="text" name="comment" class="form-control" id="comment"
-                                        placeholder="Add a comment..." required autofocus autocomplete="comment">
-                                </div>
-                                <div class="col-2">
-                                    <button type="submit" class="btn btn-outline-primary btn-sm">Post</button>
-                                </div>
-                            </div>
-                        </form>
+                        <comment-button post-id="{{ $post->id }}"></comment-button>
                     </div>
                 @endforeach
             </div>

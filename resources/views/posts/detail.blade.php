@@ -29,13 +29,13 @@
                 <hr>
                 {{-- <p><span class="font-weight-bold"><a href="/profile/{{ $post->user->id }}"><span
                                 class="text-dark">{{ $post->user->username }}</span></a></span> {{ $post->caption }}</p> --}}
-                <div class="link-web pb-1"><a
+                <div class="link-web pb-2"><a
                         href="/profile/{{ $post->user->id }}"><strong>{{ $post->user->name }}</strong></a>
                     {{ $post->caption }}
                 </div>
                 <input type="hidden" value="{{ $comments = $post->comments }}">
                 @foreach ($comments as $comment)
-                    <div class="link-web"><a
+                    <div class="link-web pb-1"><a
                             href="/profile/{{ $comment->user->id }}"><strong>{{ $comment->user->name }}</strong></a>
                         {{ $comment->comment }}
                     </div>
@@ -51,20 +51,7 @@
 
 
                 <hr>
-                <form method="POST" action="/p/{{ $post->id }}/comment">
-                    @csrf
-                    <div class="d-flex pb-3">
-                        <div class="col-10 px-3">
-                            <input type="text" name="comment" class="form-control" id="comment"
-                                placeholder="Add a comment..." required autofocus autocomplete="comment">
-                        </div>
-                        <div class="col-1">
-                            <button type="submit" class="btn btn-outline-primary btn-sm">Post</button>
-                        </div>
-                    </div>
-                </form>
-
-
+                <comment-button post-id="{{ $post->id }}"></comment-button>
             </div>
 
         </div>
