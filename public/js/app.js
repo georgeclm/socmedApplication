@@ -1884,8 +1884,6 @@ __webpack_require__.r(__webpack_exports__);
       axios.post("/p/" + this.postId + "/comment", postData).then(function (response) {
         //   this.status = !this.status;
         _this.data.comment = "";
-        console.log(postData);
-        console.log(response.data);
       })["catch"](function (errors) {
         if (errors.response.status == 401) {
           window.location = "/login";
@@ -1929,9 +1927,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["userId", "follows"],
-  mounted: function mounted() {
-    console.log("Component mounted.");
-  },
   data: function data() {
     return {
       status: this.follows
@@ -1943,7 +1938,6 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.post("/follow/" + this.userId).then(function (response) {
         _this.status = !_this.status;
-        console.log(response.data);
       })["catch"](function (errors) {
         if (errors.response.status == 401) {
           window.location = "/login";
@@ -2001,9 +1995,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["postId", "liked"],
-  mounted: function mounted() {
-    console.log("Component mounted.");
-  },
   data: function data() {
     return {
       status: this.liked,
@@ -2016,8 +2007,6 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.post("/p/" + this.postId + "/like").then(function (response) {
         _this.status = !_this.status;
-        console.log(_this.status);
-        console.log(response.data);
       })["catch"](function (errors) {
         if (errors.response.status == 401) {
           window.location = "/login";

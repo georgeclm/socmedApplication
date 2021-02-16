@@ -21,10 +21,6 @@
 export default {
   props: ["userId", "follows"],
 
-  mounted() {
-    console.log("Component mounted.");
-  },
-
   data: function () {
     return {
       status: this.follows,
@@ -37,8 +33,6 @@ export default {
         .post("/follow/" + this.userId)
         .then((response) => {
           this.status = !this.status;
-
-          console.log(response.data);
         })
         .catch((errors) => {
           if (errors.response.status == 401) {

@@ -30,10 +30,6 @@
 export default {
   props: ["postId", "liked"],
 
-  mounted() {
-    console.log("Component mounted.");
-  },
-
   data: function () {
     return {
       status: this.liked,
@@ -47,9 +43,6 @@ export default {
         .post("/p/" + this.postId + "/like")
         .then((response) => {
           this.status = !this.status;
-          console.log(this.status);
-
-          console.log(response.data);
         })
         .catch((errors) => {
           if (errors.response.status == 401) {

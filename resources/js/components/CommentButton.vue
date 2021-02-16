@@ -40,8 +40,6 @@ export default {
         .then((response) => {
           //   this.status = !this.status;
           this.data.comment = "";
-          console.log(postData);
-          console.log(response.data);
         })
         .catch((errors) => {
           if (errors.response.status == 401) {
