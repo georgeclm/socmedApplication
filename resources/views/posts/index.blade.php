@@ -15,19 +15,21 @@ $profileImage = ProfilesController::takeProfileImg();
             <div class="col-md-8">
                 @foreach ($posts as $post)
                     <div class="card mx-auto mb-5" style="width: 402px">
-                        <span class="link-web p-2 ml-2">
+                        <span class="link-web p-2">
                             <a href="/profile/{{ $post->user->id }}">
                                 <img src="{{ $post->user->profile->profileImage() }}" width="27" height="27"
                                     class="rounded-circle">
                                 <strong> {{ $post->user->name }}</strong>
                             </a>
                         </span>
-                        <img src="/storage/uploads/{{ $post->image }}" height="400" width="400">
                         <input type="hidden"
                             value="{{ $liked = auth()->user()
     ? auth()->user()->like->contains($post->id)
     : false }}">
-                        <like-button post-id="{{ $post->id }}" liked="{{ $liked }}"></like-button>
+
+                        {{-- <img src="/storage/uploads/{{ $post->image }}" height="400" width="400"> --}}
+                        <like-button post-id="{{ $post->id }}" liked="{{ $liked }}" image="{{ $post->image }}">
+                        </like-button>
                         {{-- <x-like-button post-id="{{ $post->id }}" thepage="index" /> --}}
                         <div class="pt-2 px-2"><strong>{{ $post->likes->count() }}</strong> likes</div>
                         <div class="link-web px-2"><a href="/profile/{{ $post->user->id }}">

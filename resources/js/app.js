@@ -42,6 +42,8 @@ import Vue from 'vue'
 import FollowButton from  './components/FollowButton.vue';
 import LikeButton from './components/LikeButton.vue';
 import CommentButton from './components/CommentButton.vue';
+import LikeDetail from './components/LikeDetail.vue';
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -51,6 +53,6 @@ import CommentButton from './components/CommentButton.vue';
 
 const app = new Vue({
     el: '#app',
-    components: { FollowButton,LikeButton,CommentButton }
+    components: { FollowButton,LikeButton,CommentButton,LikeDetail }
 
 });

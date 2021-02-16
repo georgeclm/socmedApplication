@@ -1,7 +1,5 @@
 <template>
   <div>
-    <img :src="getImgUrl()" height="400" width="400" @dblclick="likePost" />
-
     <div class="d-flex mt-2">
       <div class="px-2">
         <img
@@ -32,7 +30,7 @@
 
 <script>
 export default {
-  props: ["postId", "liked", "image"],
+  props: ["postId", "liked"],
 
   data: function () {
     return {

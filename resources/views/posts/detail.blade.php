@@ -49,7 +49,7 @@
                     value="{{ $liked = auth()->user()
     ? auth()->user()->like->contains($post->id)
     : false }}">
-                <like-button post-id="{{ $post->id }}" liked="{{ $liked }}"></like-button>
+                <like-detail post-id="{{ $post->id }}" liked="{{ $liked }}"></like-detail>
 
                 <div class="pt-2 px-1"><strong>{{ $post->likes->count() }}</strong> likes</div>
 
