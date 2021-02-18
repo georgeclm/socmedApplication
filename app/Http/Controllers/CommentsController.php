@@ -6,7 +6,6 @@ use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 
 class CommentsController extends Controller
 {
@@ -26,8 +25,6 @@ class CommentsController extends Controller
             'post_id' => $post->id,
             'user_id' => $userId
         ]);
-        //Redirect::back();
-
         return $comment->save();
     }
 }
