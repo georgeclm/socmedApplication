@@ -30,8 +30,6 @@ Route::get('/profile/{user}/following', [ProfilesController::class, 'following']
 Route::get('/profile/{user}/followers', [ProfilesController::class, 'followers']);
 
 
-
-
 Route::get('/profile/{user}/edit', [ProfilesController::class, 'edit']);
 
 Route::patch('/profile/{user}', [ProfilesController::class, 'update']);
