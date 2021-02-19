@@ -62,10 +62,9 @@ class PostsController extends Controller
         $post->save();
         // for all to delete all the image post go to php artisan tinker
         // Post::truncate();
-        // to redirect the page after run
         // last to make the picture is square add extension outside laravel
         // composer require intervention/image
-        return redirect('/profile/' . auth()->user()->id);
+        return redirect("/profile/{$userId}");
     }
     public function show(Post $post)
     {
