@@ -46,7 +46,6 @@ class PostsController extends Controller
         // after it is accesible have to pass to the database
         // $imagePath = request('image')->store('uploads','public');
         request('image')->store('uploads', 'public');
-        // $imagePath = ['image' => request('image')->hashName()];
         $imagePath = request('image')->hashName();
         // after already put the extension intervention image this to fit the image to 1200,1200 but this doesnt resize the image, this cut the image completly
         // use image class, the public path and the fit to size
@@ -61,10 +60,6 @@ class PostsController extends Controller
             'user_id' => $userId
         ]);
         $post->save();
-        // auth()->user()->posts->create([
-        //     'caption' => $data['caption'],
-        //     'image' => $imagePath,
-        // ]);
         // for all to delete all the image post go to php artisan tinker
         // Post::truncate();
         // to redirect the page after run
