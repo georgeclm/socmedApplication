@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -96,5 +97,14 @@ class ProfilesController extends Controller
         $followers = $user->profile->followers()->pluck('user_id');
         $profiles = Profile::whereIn('id', $followers)->with('user')->latest()->get();
         return view('profiles.followers', compact('profiles', 'user'));
+    }
+    public function activity()
+    {
+        $user = Auth::user();
+        $theuser = $user->posts->pluck('id');
+        $posts = Post::whereIn('id', $theuser)->with('likes')->latest()->get();
+        $followers = $user->profile->followers()->pluck('user_id');
+        $profiles = Profile::whereIn('id', $followers)->with('user')->latest()->get();
+        return view('profiles.activity', compact('profiles', 'user', 'posts'));
     }
 }

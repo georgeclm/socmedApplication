@@ -15,6 +15,8 @@ class PostsController extends Controller
     {
         // this index pluck to take the relationship inside following from auth user and take the user id
         $users = auth()->user()->following()->pluck('profiles.user_id');
+        // whereIn method to filter only take post where user_id is inside the array take only certain user id
+        // use with method for the relation data take the user data also
         $posts = Post::whereIn('user_id', $users)->with('user')->latest()->get();
         // foreach ($posts as $post) {
         //     $comments = $post->comments;

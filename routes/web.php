@@ -29,6 +29,9 @@ Route::get('/profile/{user}/following', [ProfilesController::class, 'following']
 
 Route::get('/profile/{user}/followers', [ProfilesController::class, 'followers']);
 
+Route::get('/activity', [ProfilesController::class, 'activity']);
+
+
 
 Route::get('/profile/{user}/edit', [ProfilesController::class, 'edit']);
 
