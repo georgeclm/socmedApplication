@@ -6,8 +6,10 @@ use App\Models\Post;
 use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route as FacadesRoute;
 
 class ProfilesController extends Controller
 {
@@ -67,6 +69,28 @@ class ProfilesController extends Controller
     {
         $profileImg = Auth::user()->profile->profileImage();
         return $profileImg;
+    }
+    static function homeImage()
+    {
+        $currentURL = url()->current();
+        $value = "";
+        if ($currentURL == "http://127.0.0.1:8000") {
+            $value = "img/homeactive.png";
+        } else {
+            $value = "img/homeicon.png";
+        }
+        return $value;
+    }
+    static function activityImage()
+    {
+        $currentURL = url()->current();
+        $value = "";
+        if ($currentURL == "http://127.0.0.1:8000/activity") {
+            $value = "img/activityactive.png";
+        } else {
+            $value = "/img/like.jpg";
+        }
+        return $value;
     }
     public function search(Request $request)
     {

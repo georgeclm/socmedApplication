@@ -2,6 +2,8 @@
 use App\Http\Controllers\ProfilesController;
 if (Auth::user()) {
 $profileImage = ProfilesController::takeProfileImg();
+$homeImage = ProfilesController::homeImage();
+$activityImage = ProfilesController::activityImage();
 }
 ?>
 
@@ -10,7 +12,7 @@ $profileImage = ProfilesController::takeProfileImg();
         <div class="container-fluid">
             <a class="navbar-brand" href="/">
                 <img src="{{ asset('img/logoicon.ico') }}" alt="" width="33" height="33"
-                    class="d-inline-block align-top mr-5"> SocMedApp</a>
+                    class="d-inline-block align-top"> SocMedApp</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Tsoggle navigation">
@@ -19,12 +21,13 @@ $profileImage = ProfilesController::takeProfileImg();
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/"><img src="{{ asset('img/homeicon.png') }}"
-                                width="23" height="23" class="d-inline-block align-top"></a>
+                        <a class="nav-link" aria-current="page" href="/"><img src="{{ asset($homeImage) }}" width="23"
+                                height="23" class="d-inline-block align-top"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/activity"><img src="/img/like.jpg" width="23"
-                                height="23" class="d-inline-block align-top mr-5"></a>
+                        <a class="nav-link" aria-current="page" href="/activity"><img
+                                src="{{ asset($activityImage) }}" width="23" height="23"
+                                class="d-inline-block align-top mr-5"></a>
                     </li>
 
                     @guest

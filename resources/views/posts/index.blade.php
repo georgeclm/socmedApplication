@@ -58,7 +58,7 @@ $profileImage = ProfilesController::takeProfileImg();
                     </div>
                 @endforeach
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 mt-5 pt-2">
                 <div class="row">
                     <div class="col-4">
                         <img src="{{ $profileImage }}" width="80" height="80" class="rounded-circle">
