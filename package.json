@@ -20,6 +20,8 @@
     },
     "dependencies": {
         "cross-env": "^7.0.3",
+        "laravel-echo": "^1.10.0",
+        "pusher-js": "^7.0.3",
         "vue": "^2.6.12"
     }
 }

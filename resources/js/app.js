@@ -43,6 +43,17 @@ import FollowButton from  './components/FollowButton.vue';
 import LikeButton from './components/LikeButton.vue';
 import CommentButton from './components/CommentButton.vue';
 import LikeDetail from './components/LikeDetail.vue';
+import ChatMessages from './components/ChatMessages.vue';
+import ChatForm from './components/ChatForm.vue';
+
+Echo.private('chat')
+  .listen('MessageSent', (e) => {
+      console.log(e.message.message);
+    this.messages.push({
+      message: e.message.message,
+      user: e.user
+    });
+  });
 
 
 /**
@@ -53,6 +64,8 @@ import LikeDetail from './components/LikeDetail.vue';
 
 const app = new Vue({
     el: '#app',
-    components: { FollowButton,LikeButton,CommentButton,LikeDetail }
+    components: { FollowButton,LikeButton,CommentButton,LikeDetail,ChatMessages,ChatForm }
 
 });
+
+

@@ -61,14 +61,24 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
     </script>
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
 </body>
 <script>
     function forceLower(strInput) {
         strInput.value = strInput.value.toLowerCase();
     }
-    var scrollSpy = new bootstrap.ScrollSpy(document.body, {
-        target: '#navbar-example'
-    })
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('06eeb53a11c2529a9fb4', {
+        cluster: 'ap1'
+    });
+
+    var channel = pusher.subscribe('chat');
+    channel.bind('my-event', function(data) {
+        app.messages.push(JSON.stringify(data));
+    });
 
 </script>
 <style>
@@ -96,6 +106,43 @@
         height: 300px;
         /* or any value */
         overflow-y: auto;
+    }
+
+    .chat {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .chat li {
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        border-bottom: 1px dotted #B3A9A9;
+    }
+
+    .chat li .chat-body p {
+        margin: 0;
+        color: #777777;
+    }
+
+    .panel-body {
+        overflow-y: scroll;
+        height: 350px;
+    }
+
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        background-color: #F5F5F5;
+    }
+
+    ::-webkit-scrollbar {
+        width: 12px;
+        background-color: #F5F5F5;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+        background-color: #555;
     }
 
 </style>

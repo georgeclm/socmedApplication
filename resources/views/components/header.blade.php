@@ -2,9 +2,9 @@
 use App\Http\Controllers\ProfilesController;
 if (Auth::user()) {
 $profileImage = ProfilesController::takeProfileImg();
+}
 $homeImage = ProfilesController::homeImage();
 $activityImage = ProfilesController::activityImage();
-}
 ?>
 
 <div>

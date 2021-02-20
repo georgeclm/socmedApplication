@@ -4,6 +4,7 @@ use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\FollowsController;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\ChatsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -52,3 +53,9 @@ Route::post('p/{post}/comment', [CommentsController::class, 'create']);
 Route::get("/search", [ProfilesController::class, 'search']);
 
 Route::post("/gotoprofile", [ProfilesController::class, 'gotoprofile']);
+
+Route::get('messages', [ChatsController::class, 'fetchMessages']);
+
+Route::post('messages', [ChatsController::class, 'sendMessage']);
+
+Route::get('/dm', [ChatsController::class, 'index']);

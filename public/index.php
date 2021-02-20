@@ -2,7 +2,32 @@
 
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
+// class MyEvent implements ShouldBroadcast
+// {
+//     use Dispatchable, InteractsWithSockets, SerializesModels;
+
+//     public $message;
+
+//     public function __construct($message)
+//     {
+//         $this->message = $message;
+//     }
+
+//     public function broadcastOn()
+//     {
+//         return ['chat'];
+//     }
+
+//     public function broadcastAs()
+//     {
+//         return 'my-event';
+//     }
+// }
 define('LARAVEL_START', microtime(true));
 
 /*
@@ -16,8 +41,8 @@ define('LARAVEL_START', microtime(true));
 |
 */
 
-if (file_exists(__DIR__.'/../storage/framework/maintenance.php')) {
-    require __DIR__.'/../storage/framework/maintenance.php';
+if (file_exists(__DIR__ . '/../storage/framework/maintenance.php')) {
+    require __DIR__ . '/../storage/framework/maintenance.php';
 }
 
 /*
@@ -31,7 +56,7 @@ if (file_exists(__DIR__.'/../storage/framework/maintenance.php')) {
 |
 */
 
-require __DIR__.'/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -44,12 +69,12 @@ require __DIR__.'/../vendor/autoload.php';
 |
 */
 
-$app = require_once __DIR__.'/../bootstrap/app.php';
+$app = require_once __DIR__ . '/../bootstrap/app.php';
 
 $kernel = $app->make(Kernel::class);
 
 $response = tap($kernel->handle(
     $request = Request::capture()
 ))->send();
-
+// event(new MyEvent('hello world'));
 $kernel->terminate($request, $response);
