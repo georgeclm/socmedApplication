@@ -165,7 +165,6 @@ return [
         /*
          * Package Service Providers...
          */
-        \Chatify\ChatifyServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -198,7 +197,6 @@ return [
         'Broadcast' => Illuminate\Support\Facades\Broadcast::class,
         'Bus' => Illuminate\Support\Facades\Bus::class,
         'Cache' => Illuminate\Support\Facades\Cache::class,
-        'Chatify' => Chatify\Facades\ChatifyMessenger::class,
         'Config' => Illuminate\Support\Facades\Config::class,
         'Cookie' => Illuminate\Support\Facades\Cookie::class,
         'Crypt' => Illuminate\Support\Facades\Crypt::class,

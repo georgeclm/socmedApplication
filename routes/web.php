@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\FollowsController;
 use App\Http\Controllers\ProfilesController;
@@ -33,7 +34,6 @@ Route::get('/profile/{user}/followers', [ProfilesController::class, 'followers']
 Route::get('/activity', [ProfilesController::class, 'activity']);
 
 
-
 Route::get('/profile/{user}/edit', [ProfilesController::class, 'edit']);
 
 Route::patch('/profile/{user}', [ProfilesController::class, 'update']);
@@ -59,3 +59,11 @@ Route::get('messages', [ChatsController::class, 'fetchMessages']);
 Route::post('messages', [ChatsController::class, 'sendMessage']);
 
 Route::get('/dm', [ChatsController::class, 'index']);
+
+Route::middleware('auth:sanctum')->get('/chat/rooms', [ChatController::class, 'rooms']);
+Route::middleware('auth:sanctum')->get('/chat/room/{roomId}/messages', [ChatController::class, 'messages']);
+Route::middleware('auth:sanctum')->post('/chat/room/{roomId}/message', [ChatController::class, 'newMessage']);
+
+// Route::get('/theroom', [ChatController::class, 'index']);
+
+Route::middleware('auth:sanctum')->get('/chat', [ChatController::class, 'index']);

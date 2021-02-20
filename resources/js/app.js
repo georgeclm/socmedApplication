@@ -43,17 +43,17 @@ import FollowButton from  './components/FollowButton.vue';
 import LikeButton from './components/LikeButton.vue';
 import CommentButton from './components/CommentButton.vue';
 import LikeDetail from './components/LikeDetail.vue';
-import ChatMessages from './components/ChatMessages.vue';
-import ChatForm from './components/ChatForm.vue';
+import ChatContainer from './components/ChatContainer.vue';
 
-Echo.private('chat')
-  .listen('MessageSent', (e) => {
-      console.log(e.message.message);
-    this.messages.push({
-      message: e.message.message,
-      user: e.user
-    });
-  });
+
+// Echo.private('chat')
+//   .listen('MessageSent', (e) => {
+//       console.log(e.message.message);
+//     this.messages.push({
+//       message: e.message.message,
+//       user: e.user
+//     });
+//   });
 
 
 /**
@@ -64,7 +64,7 @@ Echo.private('chat')
 
 const app = new Vue({
     el: '#app',
-    components: { FollowButton,LikeButton,CommentButton,LikeDetail,ChatMessages,ChatForm }
+    components: { FollowButton,LikeButton,CommentButton,LikeDetail,ChatContainer }
 
 });
 

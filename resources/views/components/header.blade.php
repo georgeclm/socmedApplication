@@ -27,8 +27,13 @@ $activityImage = ProfilesController::activityImage();
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="/activity"><img
                                 src="{{ asset($activityImage) }}" width="23" height="23"
-                                class="d-inline-block align-top mr-5"></a>
+                                class="d-inline-block align-top"></a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/chat"><img src="{{ asset($activityImage) }}"
+                                width="23" height="23" class="d-inline-block align-top mr-5"></a>
+                    </li>
+
 
                     @guest
                     @else
