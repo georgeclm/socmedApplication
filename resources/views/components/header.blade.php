@@ -5,6 +5,7 @@ $profileImage = ProfilesController::takeProfileImg();
 }
 $homeImage = ProfilesController::homeImage();
 $activityImage = ProfilesController::activityImage();
+$dmImage = ProfilesController::dmImage();
 ?>
 
 <div>
@@ -30,7 +31,7 @@ $activityImage = ProfilesController::activityImage();
                                 class="d-inline-block align-top"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/chat"><img src="{{ asset($activityImage) }}"
+                        <a class="nav-link" aria-current="page" href="/chat"><img src="{{ asset($dmImage) }}"
                                 width="23" height="23" class="d-inline-block align-top mr-5"></a>
                     </li>
 

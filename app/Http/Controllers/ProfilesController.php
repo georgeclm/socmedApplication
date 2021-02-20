@@ -92,6 +92,17 @@ class ProfilesController extends Controller
         }
         return $value;
     }
+    static function dmImage()
+    {
+        $currentURL = url()->current();
+        $value = "";
+        if ($currentURL == "http://127.0.0.1:8000/chat") {
+            $value = "img/dmicontheactive.png";
+        } else {
+            $value = "/img/dmicon.png";
+        }
+        return $value;
+    }
     public function search(Request $request)
     {
         $name = [];
