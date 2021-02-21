@@ -35,4 +35,15 @@ class ChatController extends Controller
         broadcast(new NewChatMessage($newMessage))->toOthers();
         return $newMessage;
     }
+    public function create()
+    {
+        return view('chat.create');
+    }
+    public function store(Request $request)
+    {
+        $newRoom = new ChatRoom;
+        $newRoom->name = $request->name;
+        $newRoom->save();
+        return redirect('/chat')->with('success', 'New Room have been created');
+    }
 }

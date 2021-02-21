@@ -1,7 +1,7 @@
 <template>
   <div class="container" style="width: 65%">
     <div class="row justify-content-between align-items-baseline">
-      <div class="col-md-12 text-center mb-3">
+      <div class="col-md-10 text-center mb-3">
         <chat-roomselect
           v-if="currentRoom.id"
           :rooms="chatRooms"
@@ -9,11 +9,15 @@
           v-on:roomchanged="setRoom($event)"
         />
       </div>
+      <div class="col-md-2">
+        <a href="/chat/create/room" class="btn btn-outline-success"
+          >Create Room</a
+        >
+      </div>
       <hr />
-
-      <message-container :messages="messages" />
-      <input-message :room="currentRoom" v-on:messagesent="getMessages()" />
     </div>
+    <message-container :messages="messages" />
+    <input-message :room="currentRoom" v-on:messagesent="getMessages()" />
   </div>
 </template>
 

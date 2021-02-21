@@ -31,7 +31,7 @@ Route::get('/profile/{user}/following', [ProfilesController::class, 'following']
 
 Route::get('/profile/{user}/followers', [ProfilesController::class, 'followers']);
 
-Route::get('/activity', [ProfilesController::class, 'activity']);
+Route::middleware('auth:sanctum')->get('/activity', [ProfilesController::class, 'activity']);
 
 
 Route::get('/profile/{user}/edit', [ProfilesController::class, 'edit']);
@@ -54,16 +54,16 @@ Route::get("/search", [ProfilesController::class, 'search']);
 
 Route::post("/gotoprofile", [ProfilesController::class, 'gotoprofile']);
 
-Route::get('messages', [ChatsController::class, 'fetchMessages']);
 
-Route::post('messages', [ChatsController::class, 'sendMessage']);
-
-Route::get('/dm', [ChatsController::class, 'index']);
+Route::get('/chat/{user}/profile', [ProfilesController::class, 'profileImage']);
 
 Route::middleware('auth:sanctum')->get('/chat/rooms', [ChatController::class, 'rooms']);
 Route::middleware('auth:sanctum')->get('/chat/room/{roomId}/messages', [ChatController::class, 'messages']);
 Route::middleware('auth:sanctum')->post('/chat/room/{roomId}/message', [ChatController::class, 'newMessage']);
+Route::middleware('auth:sanctum')->get('/chat/create/room', [ChatController::class, 'create']);
+Route::middleware('auth:sanctum')->post('/create/room', [ChatController::class, 'store']);
 
-// Route::get('/theroom', [ChatController::class, 'index']);
+
+
 
 Route::middleware('auth:sanctum')->get('/chat', [ChatController::class, 'index']);

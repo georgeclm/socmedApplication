@@ -142,4 +142,9 @@ class ProfilesController extends Controller
         $profiles = Profile::whereIn('id', $followers)->with('user')->latest()->get();
         return view('profiles.activity', compact('profiles', 'user', 'posts'));
     }
+    public function profileImage(User $user)
+    {
+        $profileImg = $user->profile->profileImage();
+        return $profileImg;
+    }
 }

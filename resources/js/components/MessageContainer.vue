@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-column-reverse scrollable">
+  <div class="d-flex flex-column-reverse scrollablemessage">
     <div v-for="(message, index) in messages" :key="index">
       <message-item :message="message" />
     </div>

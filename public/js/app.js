@@ -1867,6 +1867,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -2382,8 +2386,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["message"]
+  props: ["message"],
+  data: function data() {
+    return {
+      profiles: []
+    };
+  },
+  methods: {
+    showProfile: function showProfile() {
+      var _this = this;
+
+      axios.get("/chat/" + this.message.user.id + "/profile").then(function (response) {
+        _this.profiles = response.data;
+      });
+      return this.profiles;
+    }
+  }
 });
 
 /***/ }),
@@ -26584,7 +26612,7 @@ var render = function() {
         [
           _c(
             "div",
-            { staticClass: "col-md-12 text-center mb-3" },
+            { staticClass: "col-md-10 text-center mb-3" },
             [
               _vm.currentRoom.id
                 ? _c("chat-roomselect", {
@@ -26603,25 +26631,43 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("hr"),
+          _vm._m(0),
           _vm._v(" "),
-          _c("message-container", { attrs: { messages: _vm.messages } }),
-          _vm._v(" "),
-          _c("input-message", {
-            attrs: { room: _vm.currentRoom },
-            on: {
-              messagesent: function($event) {
-                return _vm.getMessages()
-              }
-            }
-          })
-        ],
-        1
-      )
-    ]
+          _c("hr")
+        ]
+      ),
+      _vm._v(" "),
+      _c("message-container", { attrs: { messages: _vm.messages } }),
+      _vm._v(" "),
+      _c("input-message", {
+        attrs: { room: _vm.currentRoom },
+        on: {
+          messagesent: function($event) {
+            return _vm.getMessages()
+          }
+        }
+      })
+    ],
+    1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-2" }, [
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-outline-success",
+          attrs: { href: "/chat/create/room" }
+        },
+        [_vm._v("Create Room")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -27012,7 +27058,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "d-flex flex-column-reverse scrollable" },
+    { staticClass: "d-flex flex-column-reverse scrollablemessage" },
     _vm._l(_vm.messages, function(message, index) {
       return _c(
         "div",
@@ -27047,8 +27093,21 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm._v(_vm._s(_vm.message.user.name) + " : " + _vm._s(_vm.message.message))
+  return _c("div", { staticClass: "row mb-3" }, [
+    _c("div", { staticClass: "col-md-1 m-auto text-end" }, [
+      _c("img", {
+        staticClass: "rounded-circle",
+        attrs: { src: _vm.showProfile(), width: "30", height: "30" }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-md-11" }, [
+      _c("div", { staticClass: "text-muted" }, [
+        _vm._v(_vm._s(_vm.message.user.name))
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "h4" }, [_vm._v(_vm._s(_vm.message.message))])
+    ])
   ])
 }
 var staticRenderFns = []

@@ -68,16 +68,6 @@
     function forceLower(strInput) {
         strInput.value = strInput.value.toLowerCase();
     }
-    // Pusher.logToConsole = true;
-
-    // var pusher = new Pusher('06eeb53a11c2529a9fb4', {
-    //     cluster: 'ap1'
-    // });
-
-    // var channel = pusher.subscribe('chat');
-    // channel.bind('my-event', function(data) {
-    //     app.messages.push(JSON.stringify(data));
-    // });
 
 </script>
 <style>
@@ -107,41 +97,9 @@
         overflow-y: auto;
     }
 
-    .chat {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-
-    .chat li {
-        margin-bottom: 10px;
-        padding-bottom: 5px;
-        border-bottom: 1px dotted #B3A9A9;
-    }
-
-    .chat li .chat-body p {
-        margin: 0;
-        color: #777777;
-    }
-
-    .panel-body {
-        overflow-y: scroll;
-        height: 350px;
-    }
-
-    ::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-        background-color: #F5F5F5;
-    }
-
-    ::-webkit-scrollbar {
-        width: 12px;
-        background-color: #F5F5F5;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-        background-color: #555;
+    .scrollablemessage {
+        height: 500px;
+        overflow-y: auto;
     }
 
 </style>

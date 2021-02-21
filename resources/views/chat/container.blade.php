@@ -1,6 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Inbox - Chats')
+@section('title', 'SocMed - Chats')
 @section('content')
-    {{-- <h1>This is data</h1> --}}
     <chat-container></chat-container>
 @endsection
