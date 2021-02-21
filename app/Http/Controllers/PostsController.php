@@ -18,13 +18,6 @@ class PostsController extends Controller
         // whereIn method to filter only take post where user_id is inside the array take only certain user id
         // use with method for the relation data take the user data also
         $posts = Post::whereIn('user_id', $users)->with('user')->latest()->get();
-        // foreach ($posts as $post) {
-        //     $comments = $post->comments;
-        //     // dd(count($comments));
-        //     foreach ($comments as $comment) {
-        //         // dd($comment->user->name);
-        //     }
-        // }
 
         return view('posts/index', compact('posts'));
     }

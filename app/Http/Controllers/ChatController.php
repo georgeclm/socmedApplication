@@ -14,11 +14,11 @@ class ChatController extends Controller
     {
         return view('chat.container');
     }
-    public function rooms(Request $request)
+    public function rooms()
     {
         return ChatRoom::all();
     }
-    public function messages(Request $request, $roomId)
+    public function messages($roomId)
     {
         return ChatMessage::where('chat_room_id', $roomId)
             ->with('user')
