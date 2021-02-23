@@ -46,14 +46,6 @@ import LikeDetail from './components/LikeDetail.vue';
 import ChatContainer from './components/ChatContainer.vue';
 
 
-// Echo.private('chat')
-//   .listen('MessageSent', (e) => {
-//       console.log(e.message.message);
-//     this.messages.push({
-//       message: e.message.message,
-//       user: e.user
-//     });
-//   });
 
 
 /**
