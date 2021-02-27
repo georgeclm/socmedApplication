@@ -1,13 +1,3 @@
-<?php
-use App\Http\Controllers\ProfilesController;
-if (Auth::user()) {
-$profileImage = ProfilesController::takeProfileImg();
-}
-$homeImage = ProfilesController::homeImage();
-$activityImage = ProfilesController::activityImage();
-$dmImage = ProfilesController::dmImage();
-?>
-
 <div>
     <nav class="navbar navbar-expand navbar-light bg-muted sticky-top">
         <div class="container-fluid">
@@ -22,17 +12,16 @@ $dmImage = ProfilesController::dmImage();
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/"><img src="{{ asset($homeImage) }}" width="23"
+                        <a class="nav-link" aria-current="page" href="/"><img src="{{ asset($home) }}" width="23"
                                 height="23" class="d-inline-block align-top"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/activity"><img
-                                src="{{ asset($activityImage) }}" width="23" height="23"
-                                class="d-inline-block align-top"></a>
+                        <a class="nav-link" aria-current="page" href="/activity"><img src="{{ asset($activity) }}"
+                                width="23" height="23" class="d-inline-block align-top"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/chat"><img src="{{ asset($dmImage) }}"
-                                width="23" height="23" class="d-inline-block align-top mr-5"></a>
+                        <a class="nav-link" aria-current="page" href="/chat"><img src="{{ asset($dm) }}" width="23"
+                                height="23" class="d-inline-block align-top mr-5"></a>
                     </li>
 
 
@@ -73,7 +62,7 @@ $dmImage = ProfilesController::dmImage();
                     <span class="dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            <span><img src="{{ $profileImage }}" width="25" height="25" class="rounded-circle">
+                            <span><img src="{{ $profileImg }}" width="25" height="25" class="rounded-circle">
                             </span>
 
                         </a>

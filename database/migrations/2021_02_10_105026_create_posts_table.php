@@ -15,6 +15,8 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            // new laravel tech for foreign key
+            // $table->foreignId('user_id')->constrained();
             $table->unsignedBigInteger('user_id');
             $table->string('caption');
             $table->string('image');

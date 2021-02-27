@@ -68,39 +68,7 @@ class ProfilesController extends Controller
         $profileImg = Auth::user()->profile->profileImage();
         return $profileImg;
     }
-    static function homeImage()
-    {
-        $currentURL = url()->current();
-        $value = "";
-        if ($currentURL == "http://127.0.0.1:8000") {
-            $value = "img/homeactive.png";
-        } else {
-            $value = "img/homeicon.png";
-        }
-        return $value;
-    }
-    static function activityImage()
-    {
-        $currentURL = url()->current();
-        $value = "";
-        if ($currentURL == "http://127.0.0.1:8000/activity") {
-            $value = "img/activityactive.png";
-        } else {
-            $value = "/img/like.jpg";
-        }
-        return $value;
-    }
-    static function dmImage()
-    {
-        $currentURL = url()->current();
-        $value = "";
-        if ($currentURL == "http://127.0.0.1:8000/chat") {
-            $value = "img/dmicontheactive.png";
-        } else {
-            $value = "/img/dmicon.png";
-        }
-        return $value;
-    }
+
     public function search(Request $request)
     {
         $name = [];

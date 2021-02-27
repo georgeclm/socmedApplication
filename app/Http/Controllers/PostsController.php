@@ -7,10 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
     public function index()
     {
         // this index pluck to take the relationship inside following from auth user and take the user id
@@ -19,11 +16,11 @@ class PostsController extends Controller
         // use with method for the relation data take the user data also
         $posts = Post::whereIn('user_id', $users)->with('user')->latest()->get();
 
-        return view('posts/index', compact('posts'));
+        return view('posts.index', compact('posts'));
     }
     public function create()
     {
-        return view('posts\create');
+        return view('posts.create');
     }
     public function store()
     {

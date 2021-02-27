@@ -21,56 +21,61 @@ use Illuminate\Support\Facades\Route;
 
 // use auth:sanctum middleware is the same with middleware auth inside contreoller to access
 Auth::routes();
-// Profiles Controller Data
-// profile detail view for each user
-Route::get('/profile/{user}', [ProfilesController::class, 'index']);
-// following view for each user
-Route::get('/profile/{user}/following', [ProfilesController::class, 'following']);
-// followers view for each user
-Route::get('/profile/{user}/followers', [ProfilesController::class, 'followers']);
-// activity for notification view for each user
-Route::middleware('auth:sanctum')->get('/activity', [ProfilesController::class, 'activity']);
-// to edit profile data
-Route::get('/profile/{user}/edit', [ProfilesController::class, 'edit']);
-// patch method to update the profile
-Route::patch('/profile/{user}', [ProfilesController::class, 'update']);
-// for the search using ajax
-Route::get("/search", [ProfilesController::class, 'search']);
-// post method inside search to execute link
-Route::post("/gotoprofile", [ProfilesController::class, 'gotoprofile']);
-// to take each profile image
-Route::get('/chat/{user}/profile', [ProfilesController::class, 'profileImage']);
 
-// Post Controller Data
-// home post index
-Route::get('/', [PostsController::class, 'index']);
-// the view to add new post
-Route::get('/p/create', [PostsController::class, 'create']);
-// store the post data inside database
-Route::post('/p', [PostsController::class, 'store']);
-// post detail view for each post
-Route::get('/p/{post}', [PostsController::class, 'show']);
-// the post method to like a post trigger toogle
-Route::post('p/{post}/like', [PostsController::class, 'likePost']);
 
-// Follows Controller Data
-// the post method for follow a user to trigger the toogle
-Route::post('follow/{user}', [FollowsController::class, 'store']);
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    //Profile
+    Route::group(['prefix' => 'profile'], function () {
+        Route::get('/{user}', [ProfilesController::class, 'index']);
+        // following view for each user
+        Route::get('/{user}/following', [ProfilesController::class, 'following']);
+        // followers view for each user
+        Route::get('/{user}/followers', [ProfilesController::class, 'followers']);
+        // to edit profile data
+        Route::get('/{user}/edit', [ProfilesController::class, 'edit']);
+        // patch method to update the profile
+        Route::patch('/{user}', [ProfilesController::class, 'update']);
+    });
+    // Post Controller Data
+    // home post index
+    Route::get('/', [PostsController::class, 'index']);
+    // the view to add new post
+    Route::group(['prefix' => 'p'], function () {
+        Route::get('/create', [PostsController::class, 'create']);
+        // store the post data inside database
+        Route::post('/', [PostsController::class, 'store']);
+        // post detail view for each post
+        Route::get('/{post}', [PostsController::class, 'show']);
+        // the post method to like a post trigger toogle
+        Route::post('/{post}/like', [PostsController::class, 'likePost']);
+        // post the comment to the database
+        Route::post('/{post}/comment', [CommentsController::class, 'store']);
+    });
+    Route::group(['prefix' => 'chat'], function () {
+        // Chat Controller Data
+        // the chat template view
+        Route::get('/', [ChatController::class, 'index']);
+        // for the room view
+        Route::get('/rooms', [ChatController::class, 'rooms']);
+        // to take all the messages inside a room
+        Route::get('/room/{roomId}/messages', [ChatController::class, 'messages']);
+        // to post the message to the database
+        Route::post('/room/{roomId}/message', [ChatController::class, 'newMessage']);
+        // to create a room link view
+        Route::get('/create/room', [ChatController::class, 'create']);
+        // to take each profile image
+        Route::get('/{user}/profile', [ProfilesController::class, 'profileImage']);
+    });
+    // to post the new room to the database
+    Route::post('/create/room', [ChatController::class, 'store']);
+    // activity for notification view for each user
+    Route::get('/activity', [ProfilesController::class, 'activity']);
+    // for the search using ajax
+    Route::get("/search", [ProfilesController::class, 'search']);
+    // post method inside search to execute link
+    Route::post("/gotoprofile", [ProfilesController::class, 'gotoprofile']);
 
-// Comment Controller Data
-// post the comment to the database
-Route::post('p/{post}/comment', [CommentsController::class, 'create']);
 
-// Chat Controller Data
-// the chat template view
-Route::middleware('auth:sanctum')->get('/chat', [ChatController::class, 'index']);
-// for the room view
-Route::middleware('auth:sanctum')->get('/chat/rooms', [ChatController::class, 'rooms']);
-// to take all the messages inside a room
-Route::middleware('auth:sanctum')->get('/chat/room/{roomId}/messages', [ChatController::class, 'messages']);
-// to post the message to the database
-Route::middleware('auth:sanctum')->post('/chat/room/{roomId}/message', [ChatController::class, 'newMessage']);
-// to create a room link view
-Route::middleware('auth:sanctum')->get('/chat/create/room', [ChatController::class, 'create']);
-// to post the new room to the database
-Route::middleware('auth:sanctum')->post('/create/room', [ChatController::class, 'store']);
+    // Follows Controller Data
+    Route::post('/follow/{user}', [FollowsController::class, 'store']);
+});
