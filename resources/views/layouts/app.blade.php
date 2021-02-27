@@ -26,6 +26,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!--Ajax Search-->
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
@@ -37,17 +38,17 @@
 <body>
     <x-header />
     <div id="app">
-        @if ($errors->any())
+        @if (session('error'))
             <div class="alert alert-danger">
                 <ul>
-                    <h6>{{ $errors->first() }}</h6>
+                    <h6>{{ session('error') }}</h6>
                 </ul>
             </div>
         @endif
-        @if (\Session::has('success'))
+        @if (session('success'))
             <div class="alert alert-success">
                 <ul>
-                    <h6>{!! \Session::get('success') !!}</h6>
+                    <h6>{{ session('success') }}</h6>
                 </ul>
             </div>
         @endif
@@ -68,6 +69,14 @@
     function forceLower(strInput) {
         strInput.value = strInput.value.toLowerCase();
     }
+    $(function() {
+        $('#name').on('keypress', function(e) {
+            if (e.which == 32) {
+                console.log('Space Detected');
+                return false;
+            }
+        });
+    });
 
 </script>
 <style>

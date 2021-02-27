@@ -16,8 +16,8 @@
                         </div>
                         <div class="col-md-6 pt-5">
                             <div class="link-web h5"><a
-                                    href="/profile/{{ $like->id }}"><strong>{{ $like->name }}</strong>
-                                    liked your photo</a>
+                                    href="{{ route('profile.index', $like) }}"><strong>{{ $like->name }}</strong></a>
+                                liked your photo
                             </div>
                         </div>
                         <div class="col-2 mt-4">
@@ -33,7 +33,7 @@
                 </div>
                 <div class="col-md-6 pt-5">
                     <div class="link-web h5"><a
-                            href="/profile/{{ $profile->user->id }}"><strong>{{ $profile->user->name }}</strong>
+                            href="{{ route('profile.index', $profile->user) }}"><strong>{{ $profile->user->name }}</strong>
                             started following you</a>
                     </div>
                 </div>

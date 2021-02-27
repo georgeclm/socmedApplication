@@ -13,7 +13,7 @@
                         @if ($user->id == Auth::user()->id)
                             @can('update', $user->profile)
                                 <div class="col-8">
-                                    <a href="/profile/{{ $user->id }}/edit" class="btn btn-outline-success btn-sm">Edit
+                                    <a href="{{ route('profile.edit', $user) }}" class="btn btn-outline-success btn-sm">Edit
                                         Profile</a>
                                 </div>
                             @endcan
@@ -32,10 +32,10 @@
                     <!--Take the number posts count based on the id created   $user->profile->followers->count() $user->profile->following->count()-->
                     <div class="p-3"><strong>{{ $user->posts->count() }}</strong> posts</div>
                     <div class="link-web p-3"><strong><a
-                                href="/profile/{{ $user->id }}/followers">{{ $user->profile->followers->count() }}</strong>
+                                href="{{ route('profile.followers', $user) }}">{{ $user->profile->followers->count() }}</strong>
                         followers</a></div>
                     <div class="link-web p-3"><a
-                            href="/profile/{{ $user->id }}/following"><strong>{{ $user->following->count() }}</strong>
+                            href="{{ route('profile.following', $user) }}"><strong>{{ $user->following->count() }}</strong>
                             following</a></div>
 
                 </div>

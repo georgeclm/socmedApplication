@@ -12,7 +12,8 @@
                     <img src="{{ $profile->profileImage() }}" class="rounded-circle" width="100px" height="100px">
                 </div>
                 <div class="col-md-6 pt-5">
-                    <div class="link-web h4"><a href="/profile/{{ $profile->user->id }}">{{ $profile->user->name }}</a>
+                    <div class="link-web h4"><a
+                            href="{{ route('profile.index', $profile->user) }}">{{ $profile->user->name }}</a>
                     </div>
                     <div class="text-muted h4">{{ $profile->title }}</div>
                 </div>

@@ -45,7 +45,7 @@ class PostsController extends Controller
         // after change the image then save it to the database
         //$image->save();
         // to take care of the user id post create that has been created and already know the user has many
-        $userId = Auth::user()->id;
+        $userId = auth()->id();
         $post = new Post([
             'caption' => $data['caption'],
             'image' => $imagePath,
@@ -56,7 +56,7 @@ class PostsController extends Controller
         // Post::truncate();
         // last to make the picture is square add extension outside laravel
         // composer require intervention/image
-        return redirect("/profile/{$userId}");
+        return redirect()->route('profile.index', $userId);
     }
     public function show(Post $post)
     {

@@ -57,7 +57,7 @@ class ProfilesController extends Controller
             $imageArray ?? []
         ));
 
-        return redirect("/profile/{$user->id}")->with('success', 'Success Profile Have Been Updated');
+        return redirect()->route('profile.index', $user)->with('success', 'Success Profile Have Been Updated');
         // after all this now time for policy and privacy
         // go to artisan and php artisan make:policy (nameofpolicy) -m (nameofmodel)
         // php artisan make:policy ProfilePolicy -m Profile
@@ -85,7 +85,7 @@ class ProfilesController extends Controller
     }
     public function gotoprofile(Request $request)
     {
-        return redirect("/profile/{$request->livesearch}");
+        return redirect()->route('profile.index', $request->livesearch);
     }
     public function following(User $user)
     {

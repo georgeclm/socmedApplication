@@ -14,7 +14,7 @@
                             height="35">
                     </div>
                     <div class="col-4">
-                        <div class="link-web"><a href="/profile/{{ $post->user->id }}"><strong>
+                        <div class="link-web"><a href="{{ route('profile.index', $post->user) }}"><strong>
                                     {{ $post->user->name }}</strong>
                             </a></div>
                     </div>
@@ -30,13 +30,13 @@
                 <hr>
                 <div class="scrollable">
                     <div class="link-web pb-1"><a
-                            href="/profile/{{ $post->user->id }}"><strong>{{ $post->user->name }}</strong></a>
+                            href="{{ route('profile.index', $post->user) }}"><strong>{{ $post->user->name }}</strong></a>
                         {{ $post->caption }}
                     </div>
                     <input type="hidden" value="{{ $comments = $post->comments }}">
                     @foreach ($comments as $comment)
                         <div class="link-web pb-1"><a
-                                href="/profile/{{ $comment->user->id }}"><strong>{{ $comment->user->name }}</strong></a>
+                                href="{{ route('profile.index', $comment->user) }}"><strong>{{ $comment->user->name }}</strong></a>
                             {{ $comment->comment }}
                         </div>
                     @endforeach

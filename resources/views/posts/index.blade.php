@@ -16,7 +16,7 @@ $profileImage = ProfilesController::takeProfileImg();
                 @foreach ($posts as $post)
                     <div class="card mx-auto mb-5" style="width: 402px">
                         <span class="link-web p-2">
-                            <a href="/profile/{{ $post->user->id }}">
+                            <a href="{{ route('profile.index', $post->user) }}">
                                 <img src="{{ $post->user->profile->profileImage() }}" width="27" height="27"
                                     class="rounded-circle">
                                 <strong> {{ $post->user->name }}</strong>
@@ -32,7 +32,7 @@ $profileImage = ProfilesController::takeProfileImg();
                             count="{{ $post->likes->count() }}">
                         </like-button>
                         {{-- <div class="pt-2 px-2"><strong>{{ $post->likes->count() }}</strong> likes</div> --}}
-                        <div class="link-web px-2"><a href="/profile/{{ $post->user->id }}">
+                        <div class="link-web px-2"><a href="{{ route('profile.index', $post->user) }}">
                                 <strong>{{ $post->user->name }}</strong>
                             </a>
                             {{ $post->caption }}
@@ -46,7 +46,7 @@ $profileImage = ProfilesController::takeProfileImg();
                         <input type="hidden" value="{{ $limit = 1 }}">
                         @foreach ($comments as $comment)
                             <div class="link-web px-2"><a
-                                    href="/profile/{{ $comment->user->id }}"><strong>{{ $comment->user->name }}</strong></a>
+                                    href="{{ route('profile.index', $comment->user) }}"><strong>{{ $comment->user->name }}</strong></a>
                                 {{ $comment->comment }}
                             </div>
                             @if ($limit++ == 2)
@@ -65,7 +65,7 @@ $profileImage = ProfilesController::takeProfileImg();
                     </div>
                     <div class="col-6 mt-3">
                         <div class="link-web">
-                            <a href="/profile/{{ auth()->user()->id }}">
+                            <a href="{{ route('profile.index', auth()->user()) }}">
                                 <strong>{{ auth()->user()->name }}</strong></a>
                         </div>
                         {{ auth()->user()->profile->title }}

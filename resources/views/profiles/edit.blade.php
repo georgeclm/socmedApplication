@@ -7,7 +7,7 @@
         <div class="row justify-content-center">
             <div class="col-sm-4 col-sm-offset-4">
                 <h4>Edit Profile</h4>
-                <form method="POST" action="/profile/{{ $user->id }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('profile.update', $user) }}" enctype="multipart/form-data">
                     @csrf
                     @method("PATCH")
                     <div class="mb-3">
