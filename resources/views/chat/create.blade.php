@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-sm-4 col-sm-offset-4">
                 <h4>Create New Room</h4>
-                <form method="POST" action="/create/room">
+                <form method="POST" action="{{ route('room.store') }}">
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Room Name</label>

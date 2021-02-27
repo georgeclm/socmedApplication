@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-sm-4 col-sm-offset-4">
                 <h4>Add New Post</h4>
-                <form method="POST" action="/p" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="image" class="form-label">Post Image</label>

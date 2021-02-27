@@ -1,7 +1,7 @@
 <div>
     <nav class="navbar navbar-expand navbar-light bg-muted sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand" href="{{ route('posts.index') }}">
                 <img src="{{ asset('img/logoicon.ico') }}" alt="" width="33" height="33"
                     class="d-inline-block align-top"> SocMed</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -12,16 +12,18 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/"><img src="{{ asset($home) }}" width="23"
-                                height="23" class="d-inline-block align-top"></a>
+                        <a class="nav-link" aria-current="page" href="{{ route('posts.index') }}"><img
+                                src="{{ asset($home) }}" width="23" height="23" class="d-inline-block align-top"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/activity"><img src="{{ asset($activity) }}"
-                                width="23" height="23" class="d-inline-block align-top"></a>
+                        <a class="nav-link" aria-current="page" href="{{ route('activity') }}"><img
+                                src="{{ asset($activity) }}" width="23" height="23"
+                                class="d-inline-block align-top"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/chat"><img src="{{ asset($dm) }}" width="23"
-                                height="23" class="d-inline-block align-top mr-5"></a>
+                        <a class="nav-link" aria-current="page" href="{{ route('chat') }}"><img
+                                src="{{ asset($dm) }}" width="23" height="23"
+                                class="d-inline-block align-top mr-5"></a>
                     </li>
 
 
@@ -50,7 +52,7 @@
 
                 @guest
                     <div class="link-web mr-3 p-2">
-                        <a class="" href="/login">Login</a>
+                        <a class="" href="{{ route('login') }}">Login</a>
                     </div>
                     @if (Route::has('register'))
                         <div class="link-web ml-3">

@@ -38,23 +38,23 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     });
     // Post Controller Data
     // home post index
-    Route::get('/', [PostsController::class, 'index']);
+    Route::get('/', [PostsController::class, 'index'])->name('posts.index');
     // the view to add new post
     Route::group(['prefix' => 'p'], function () {
-        Route::get('/create', [PostsController::class, 'create']);
+        Route::get('/create', [PostsController::class, 'create'])->name('posts.create');
         // store the post data inside database
-        Route::post('/', [PostsController::class, 'store']);
+        Route::post('/', [PostsController::class, 'store'])->name('posts.store');
         // post detail view for each post
-        Route::get('/{post}', [PostsController::class, 'show']);
+        Route::get('/{post}', [PostsController::class, 'show'])->name('posts.show');
         // the post method to like a post trigger toogle
-        Route::post('/{post}/like', [PostsController::class, 'likePost']);
+        Route::post('/{post}/like', [PostsController::class, 'likePost'])->name('posts.like');
         // post the comment to the database
-        Route::post('/{post}/comment', [CommentsController::class, 'store']);
+        Route::post('/{post}/comment', [CommentsController::class, 'store'])->name('posts.comment');
     });
     Route::group(['prefix' => 'chat'], function () {
         // Chat Controller Data
         // the chat template view
-        Route::get('/', [ChatController::class, 'index']);
+        Route::get('/', [ChatController::class, 'index'])->name('chat');
         // for the room view
         Route::get('/rooms', [ChatController::class, 'rooms']);
         // to take all the messages inside a room
@@ -67,9 +67,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::get('/{user}/profile', [ProfilesController::class, 'profileImage']);
     });
     // to post the new room to the database
-    Route::post('/create/room', [ChatController::class, 'store']);
+    Route::post('/create/room', [ChatController::class, 'store'])->name('room.store');
     // activity for notification view for each user
-    Route::get('/activity', [ProfilesController::class, 'activity']);
+    Route::get('/activity', [ProfilesController::class, 'activity'])->name('activity');
     // for the search using ajax
     Route::get("/search", [ProfilesController::class, 'search']);
     // post method inside search to execute link

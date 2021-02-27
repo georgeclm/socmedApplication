@@ -24,7 +24,7 @@
                     </div>
 
                     @can('update', $user->profile)
-                        <a href="/p/create" class="btn btn-outline-secondary"> Add new post</a>
+                        <a href="{{ route('posts.create') }}" class="btn btn-outline-secondary"> Add new post</a>
                     @endcan
 
                 </div>
@@ -53,7 +53,7 @@
         <div class="row">
             @foreach ($user->posts as $post)
                 <div class="col-6 col-md-4 mb-3">
-                    <a href="/p/{{ $post->id }}">
+                    <a href="{{ route('posts.show', $post) }}">
                         <div class="bg-image hover-overlay">
 
                             <img src="/storage/uploads/{{ $post->image }}" height="300" width="300" class="image">
