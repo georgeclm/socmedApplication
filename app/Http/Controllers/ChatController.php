@@ -14,6 +14,10 @@ class ChatController extends Controller
     {
         return view('chat.container');
     }
+    public function create()
+    {
+        return view('chat.create');
+    }
     public function rooms()
     {
         return ChatRoom::all();
@@ -28,22 +32,19 @@ class ChatController extends Controller
     public function newMessage(Request $request, $roomId)
     {
         $newMessage = new ChatMessage;
-        $newMessage->user_id = Auth::id();
+        $newMessage->user_id = auth()->id();
         $newMessage->chat_room_id = $roomId;
         $newMessage->message = $request->message;
         $newMessage->save();
         broadcast(new NewChatMessage($newMessage))->toOthers();
         return $newMessage;
     }
-    public function create()
-    {
-        return view('chat.create');
-    }
+
     public function store(Request $request)
     {
         $newRoom = new ChatRoom;
         $newRoom->name = $request->name;
         $newRoom->save();
-        return redirect('/chat')->with('success', 'New Room have been created');
+        return redirect()->route('chat')->with('success', 'New Room have been created');
     }
 }
