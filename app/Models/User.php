@@ -75,4 +75,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Message::class);
     }
+    public function chatroom()
+    {
+        return $this->belongsToMany(ChatRoom::class);
+    }
 }

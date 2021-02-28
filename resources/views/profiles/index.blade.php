@@ -20,6 +20,15 @@
                         @else
                             {{-- <x-follow-button user-id="{{ $user->id }}" follows="{{ $follows }}" /> --}}
                             <follow-button user-id="{{ $user->id }}" follows="{{ $follows }}"></follow-button>
+                            <div>
+                                <div class="col-2">
+                                    <a href="{{ route('chat.store', $user) }}">
+                                        <button class="btn btn-outline-primary">Chat</button>
+                                    </a>
+                                </div>
+                            </div>
+
+
                         @endif
                     </div>
 

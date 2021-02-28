@@ -65,6 +65,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::get('/create/room', [ChatController::class, 'create']);
         // to take each profile image
         Route::get('/{user}/profile', [ProfilesController::class, 'profileImage']);
+        // for profile chat
+        Route::get('/{user}/create/room', [ChatController::class, 'chat'])->name('chat.store');
     });
     // to post the new room to the database
     Route::post('/create/room', [ChatController::class, 'store'])->name('room.store');
