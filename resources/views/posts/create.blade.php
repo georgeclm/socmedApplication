@@ -11,7 +11,7 @@
                     <div class="mb-3">
                         <label for="image" class="form-label">Post Image</label>
                         <input type="file" class="form-control" id="image" name="image" value="{{ old('image') }}"
-                            required aria-describedby="emailHelp">
+                            required>
                     </div>
                     <div class="mb-3">
                         <label for="caption" class="form-label">Caption</label>
@@ -19,7 +19,7 @@
                             required autofocus autocomplete="caption">
                     </div>
 
-                    <button type="submit" class="btn btn-outline-primary">Add New Post</button>
+                    <button type="submit" class="btn btn-outline-secondary">Add New Post</button>
                 </form>
             </div>
         </div>

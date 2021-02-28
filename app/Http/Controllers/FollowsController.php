@@ -9,10 +9,7 @@ use Illuminate\Support\Facades\Redirect;
 
 class FollowsController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
     public function store(User $user)
     {
         // this use the profile user pivot table to connect between the follower and following
