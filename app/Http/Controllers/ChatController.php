@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\NewChatMessage;
 use App\Models\ChatMessage;
 use App\Models\ChatRoom;
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,16 +18,16 @@ class ChatController extends Controller
     }
     public function create()
     {
-        return view('chat.create');
+        $users = auth()->user()->following()->pluck('profiles.user_id');
+        $profiles = Profile::whereIn('user_id', $users)->with('user')->latest()->get();
+        // dd($profiles);
+        return view('chat.create', compact('profiles'));
     }
     public function rooms()
     {
-
-        $rooms = DB::table('chat_room_user')
-            ->join('chat_rooms', 'chat_room_user.chat_room_id', '=', 'chat_rooms.id')
-            ->where('user_id', auth()->id())
-            ->get();
-        return $rooms;
+        $userID = auth()->id();
+        $room = ChatRoom::where('collection_id', 'LIKE', "%$userID%")->get();
+        return $room;
     }
     public function messages($roomId)
     {
@@ -48,8 +49,10 @@ class ChatController extends Controller
 
     public function store(Request $request)
     {
+        $users = implode("", $request->checked) . auth()->id();
         $newRoom = new ChatRoom;
         $newRoom->name = $request->name;
+        $newRoom->collection_id = $users;
         $newRoom->save();
         return redirect()->route('chat')->with('success', 'New Room have been created');
     }

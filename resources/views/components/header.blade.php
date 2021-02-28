@@ -61,13 +61,13 @@
                     @endif
 
                 @else
-                    <span class="dropdown">
+                    <span class="dropstart">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <span><img src="{{ $profileImg }}" width="25" height="25" class="rounded-circle">
                             </span>
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start" aria-labelledby="navbarDropdown">
                             <li> <a class="dropdown-item" href="{{ route('profile.index', auth()->user()) }}">
                                     My Profile
                                 </a>

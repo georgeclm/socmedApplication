@@ -113,4 +113,8 @@ class ProfilesController extends Controller
         $profileImg = $user->profile->profileImage();
         return $profileImg;
     }
+    public function user()
+    {
+        return auth()->id();
+    }
 }

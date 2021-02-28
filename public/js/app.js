@@ -2395,11 +2395,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["message"],
   data: function data() {
     return {
-      profiles: []
+      profiles: [],
+      theUser: ""
     };
   },
   methods: {
@@ -2410,6 +2432,14 @@ __webpack_require__.r(__webpack_exports__);
         _this.profiles = response.data;
       });
       return this.profiles;
+    },
+    authUser: function authUser() {
+      var _this2 = this;
+
+      axios.get("/user").then(function (response) {
+        _this2.theUser = response.data;
+      });
+      return this.theUser;
     }
   }
 });
@@ -27093,21 +27123,44 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row mb-3" }, [
-    _c("div", { staticClass: "col-md-1 m-auto text-end" }, [
-      _c("img", {
-        staticClass: "rounded-circle",
-        attrs: { src: _vm.showProfile(), width: "30", height: "30" }
-      })
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-md-11" }, [
-      _c("div", { staticClass: "text-muted" }, [
-        _vm._v(_vm._s(_vm.message.user.name))
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "h4" }, [_vm._v(_vm._s(_vm.message.message))])
-    ])
+  return _c("div", [
+    _vm.message.user.id == _vm.authUser()
+      ? _c("div", { staticClass: "row mb-3 mr-auto" }, [
+          _c("div", { staticClass: "col-md-10 text-end" }, [
+            _c("div", { staticClass: "text-muted" }, [
+              _vm._v(_vm._s(_vm.message.user.name))
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "h4" }, [
+              _vm._v(_vm._s(_vm.message.message))
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-1" }, [
+            _c("img", {
+              staticClass: "rounded-circle mt-3",
+              attrs: { src: _vm.showProfile(), width: "30", height: "30" }
+            })
+          ])
+        ])
+      : _c("div", { staticClass: "row mb-3 mr-auto" }, [
+          _c("div", { staticClass: "col-md-1 m-auto text-end" }, [
+            _c("img", {
+              staticClass: "rounded-circle",
+              attrs: { src: _vm.showProfile(), width: "30", height: "30" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-11" }, [
+            _c("div", { staticClass: "text-muted" }, [
+              _vm._v(_vm._s(_vm.message.user.name))
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "h4" }, [
+              _vm._v(_vm._s(_vm.message.message))
+            ])
+          ])
+        ])
   ])
 }
 var staticRenderFns = []
@@ -39359,14 +39412,6 @@ $('.livesearch').select2({
 
 
 
- // Echo.private('chat')
-//   .listen('MessageSent', (e) => {
-//       console.log(e.message.message);
-//     this.messages.push({
-//       message: e.message.message,
-//       user: e.user
-//     });
-//   });
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

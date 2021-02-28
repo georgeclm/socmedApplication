@@ -39,6 +39,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     // Post Controller Data
     // home post index
     Route::get('/', [PostsController::class, 'index'])->name('posts.index');
+    Route::get('/user', [ProfilesController::class, 'user'])->name('user.auth');
+
     // the view to add new post
     Route::group(['prefix' => 'p'], function () {
         Route::get('/create', [PostsController::class, 'create'])->name('posts.create');
