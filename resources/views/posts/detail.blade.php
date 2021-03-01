@@ -51,6 +51,7 @@
                 <hr>
                 <comment-button post-id="{{ $post->id }}"></comment-button>
             </div>
+            <x-likes />
 
         </div>
     </div>

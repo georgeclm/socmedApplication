@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ChatRoom;
 use App\Models\Post;
 use App\Models\Profile;
-use Illuminate\Support\Facades\DB;
 
 class PostsController extends Controller
 {

@@ -2305,13 +2305,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["postId", "liked", "count"],
   data: function data() {
     return {
       status: this.liked,
       detail: "/p/" + this.postId,
-      liked_by: "/p/" + this.postId + "/liked_by",
+      likes: "/p/" + this.postId + "/liked_by",
       link: ""
     };
   },
@@ -27084,12 +27091,23 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "link-web pt-2 px-2" }, [
-      _c("a", { attrs: { href: this.liked_by } }, [
+    _c(
+      "div",
+      {
+        staticClass: "link-web pt-2 px-2",
+        staticStyle: { cursor: "pointer" },
+        attrs: {
+          "data-toggle": "modal",
+          id: "likesButton",
+          "data-target": "#like",
+          "data-attr": this.likes
+        }
+      },
+      [
         _c("strong", { domProps: { textContent: _vm._s(this.count) } }),
-        _vm._v(" likes")
-      ])
-    ])
+        _vm._v(" likes\n  ")
+      ]
+    )
   ])
 }
 var staticRenderFns = []

@@ -3,15 +3,12 @@
         <div class="col-2">
             <img src="{{ $profile->profileImage() }}" class="rounded-circle" width="50px" height="50px">
         </div>
-        <div class="col-6">
+        <div class="col-8">
             <div class="link-web h5"><a
                     href="{{ route('profile.index', $profile->user) }}">{{ $profile->user->name }}</a>
             </div>
             <div class="text-muted h5">{{ $profile->title }}</div>
         </div>
-
-
-</div>
-<hr>
-@endforeach
+        <hr>
+    @endforeach
 </div>
