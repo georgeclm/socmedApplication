@@ -43,6 +43,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     // the view to add new post
     Route::group(['prefix' => 'p'], function () {
+        Route::get('/{post}/liked_by', [PostsController::class, 'likeView'])->name('posts.likeby');
         Route::get('/create', [PostsController::class, 'create'])->name('posts.create');
         // store the post data inside database
         Route::post('/', [PostsController::class, 'store'])->name('posts.store');

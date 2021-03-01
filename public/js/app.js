@@ -2210,12 +2210,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["postId", "liked", "image", "count"],
   data: function data() {
     return {
       status: this.liked,
       detail: "/p/" + this.postId,
+      liked_by: "/p/" + this.postId + "/liked_by",
       link: ""
     };
   },
@@ -27009,9 +27012,11 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "pt-2 px-2" }, [
-      _c("strong", { domProps: { textContent: _vm._s(this.count) } }),
-      _vm._v(" likes")
+    _c("div", { staticClass: "link-web pt-2 px-2" }, [
+      _c("a", { attrs: { href: this.liked_by } }, [
+        _c("strong", { domProps: { textContent: _vm._s(this.count) } }),
+        _vm._v(" likes ")
+      ])
     ])
   ])
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ChatRoom;
 use App\Models\Post;
+use App\Models\Profile;
 use Illuminate\Support\Facades\DB;
 
 class PostsController extends Controller
@@ -72,5 +73,11 @@ class PostsController extends Controller
         // auth()->user()->like()->toggle($post);
         // return Redirect::back();
         return auth()->user()->like()->toggle($post);
+    }
+    public function likeView(Post $post)
+    {
+        $likes = $post->likes()->pluck('user_id');
+        $profiles = Profile::whereIn('id', $likes)->with('user')->latest()->get();
+        return view('posts.likes', compact('profiles'));
     }
 }
