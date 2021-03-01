@@ -9,7 +9,7 @@
 
 ## Social Media Web Application 
 
-This Program create instagram clone for all the features.MySQL, Blade, Bootstrap
+This Program create instagram clone for all the features. MySQL, Blade, Bootstrap and Vue JS Component
 ## To use the template
 
 1. **Clone the Repository**
