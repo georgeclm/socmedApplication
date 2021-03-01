@@ -14,6 +14,8 @@ $profileImage = ProfilesController::takeProfileImg();
         <div class="row">
             <div class="col-md-8">
                 @foreach ($posts as $post)
+                    <x-likes />
+
                     <div class="card mx-auto mb-5" style="width: 402px">
                         <span class="link-web p-2">
                             <a href="{{ route('profile.index', $post->user) }}">

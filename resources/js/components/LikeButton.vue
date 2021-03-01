@@ -18,8 +18,15 @@
         </a>
       </div>
     </div>
-    <div class="link-web pt-2 px-2">
-      <a :href="this.liked_by"> <strong v-text="this.count"></strong> likes </a>
+    <div
+      class="link-web pt-2 px-2"
+      style="cursor: pointer"
+      data-toggle="modal"
+      id="likesButton"
+      data-target="#like"
+      :data-attr="this.likes"
+    >
+      <strong v-text="this.count"></strong> likes
     </div>
   </div>
 </template>
@@ -30,17 +37,18 @@ export default {
 
   data: function () {
     return {
+      postData: this.postId,
       status: this.liked,
       detail: "/p/" + this.postId,
-      liked_by: "/p/" + this.postId + "/liked_by",
-      link: "",
+      likes: "/p/" + this.postId + "/liked_by",
+      link: false,
     };
   },
   methods: {
     likePost() {
       axios
         .post("/p/" + this.postId + "/like")
-        .then((response) => {
+        .then(() => {
           this.status = !this.status;
           if (this.status) {
             this.count++;

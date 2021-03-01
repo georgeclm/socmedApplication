@@ -87,18 +87,7 @@ class ProfilesController extends Controller
     {
         return redirect()->route('profile.index', $request->livesearch);
     }
-    public function following(User $user)
-    {
-        $users = $user->following()->pluck('profiles.user_id');
-        $profiles = Profile::whereIn('user_id', $users)->with('user')->latest()->get();
-        return view('profiles.following', compact('profiles', 'user'));
-    }
-    public function followers(User $user)
-    {
-        $followers = $user->profile->followers()->pluck('user_id');
-        $profiles = Profile::whereIn('id', $followers)->with('user')->latest()->get();
-        return view('profiles.followers', compact('profiles', 'user'));
-    }
+
     public function activity()
     {
         $user = Auth::user();

@@ -16,7 +16,9 @@
         </a>
       </div>
     </div>
-    <div class="pt-2 px-2"><strong v-text="this.count"></strong> likes</div>
+    <div class="link-web pt-2 px-2">
+      <a :href="this.liked_by"><strong v-text="this.count"></strong> likes</a>
+    </div>
   </div>
 </template>
 
@@ -28,6 +30,7 @@ export default {
     return {
       status: this.liked,
       detail: "/p/" + this.postId,
+      liked_by: "/p/" + this.postId + "/liked_by",
       link: "",
     };
   },

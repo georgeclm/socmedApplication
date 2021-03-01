@@ -27,10 +27,6 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     //Profile
     Route::group(['prefix' => 'profile'], function () {
         Route::get('/{user}', [ProfilesController::class, 'index'])->name('profile.index');
-        // following view for each user
-        Route::get('/{user}/following', [ProfilesController::class, 'following'])->name('profile.following');
-        // followers view for each user
-        Route::get('/{user}/followers', [ProfilesController::class, 'followers'])->name('profile.followers');
         // to edit profile data
         Route::get('/{user}/edit', [ProfilesController::class, 'edit'])->name('profile.edit');
         // patch method to update the profile

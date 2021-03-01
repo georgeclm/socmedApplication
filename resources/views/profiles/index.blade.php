@@ -27,9 +27,9 @@
                                     </a>
                                 </div>
                             </div>
-
-
                         @endif
+                        <x-followers :user="$user" />
+                        <x-following :user="$user" />
                     </div>
 
                     @can('update', $user->profile)
@@ -40,12 +40,14 @@
                 <div class="d-flex">
                     <!--Take the number posts count based on the id created   $user->profile->followers->count() $user->profile->following->count()-->
                     <div class="p-3"><strong>{{ $user->posts->count() }}</strong> posts</div>
-                    <div class="link-web p-3"><strong><a
-                                href="{{ route('profile.followers', $user) }}">{{ $user->profile->followers->count() }}</strong>
-                        followers</a></div>
-                    <div class="link-web p-3"><a
-                            href="{{ route('profile.following', $user) }}"><strong>{{ $user->following->count() }}</strong>
-                            following</a></div>
+                    <div class="link-web p-3" data-bs-toggle="modal" data-bs-target="#followers" style="cursor: pointer">
+                        <strong>{{ $user->profile->followers->count() }}</strong>
+                        followers
+                    </div>
+                    <div class="link-web p-3" data-bs-toggle="modal" data-bs-target="#followings" style="cursor: pointer">
+                        <strong>{{ $user->following->count() }}</strong>
+                        following
+                    </div>
 
                 </div>
                 <div class="p-1"><strong>{{ $user->profile->title ?? 'Coming soon' }} </strong></div>
