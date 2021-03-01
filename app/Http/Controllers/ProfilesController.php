@@ -16,6 +16,7 @@ class ProfilesController extends Controller
         // same as this below to simplfy the work
         // dd($user->profile);
         // $user = User::find($user);
+        // this is text update from github lets see if i pull the code from my repo
         $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
         // dd(Auth::user()->following->count());
         return view('profiles.index', compact('user', 'follows'));
